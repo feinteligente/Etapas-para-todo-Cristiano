@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Etapas del Cristiano</title>
+    
+    <!-- Metaetiquetas para instalar como App (PWA) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#fafaf9">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2913/2913465.png">
+    
+    <!-- Estilos y Fuentes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:italic,wght@0,400;0,700;1,400&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Librerías React -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .font-serif { font-family: 'Crimson Pro', serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Animaciones suaves */
+        @keyframes slideIn {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .animate-slide { animation: slideIn 0.3s ease-out forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-[#fafaf9]">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Componente Icono
+        const Icon = ({ name, className = "w-5 h-5" }) => {
+            useEffect(() => {
+                lucide.createIcons();
+            }, [name]);
+            return <i data-lucide={name} className={className}></i>;
+        };
+
+        const App = () => {
+            // Estados de navegación
+            const [view, setView] = useState('main'); 
+            
+            // Estados específicos para cada submenú
+            const [liberView, setLiberView] = useState('menu');
+            const [arrepentimientoView, setArrepentimientoView] = useState('menu');
+            const [aguasView, setAguasView] = useState('menu');
+            const [espirituView, setEspirituView] = useState('menu');
+            const [fuegoView, setFuegoView] = useState('menu');
+            const [servirView, setServirView] = useState('menu');
+            
+            const [selectedItem, setSelectedItem] = useState(null);
+            const [activeTab, setActiveTab] = useState('');
+
+            const WHATSAPP_LINK = "https://wa.me/5493718320232?text=Hola,%20necesito%20acompañamiento%20espiritual.";
+
+            // --- CONFIGURACIÓN DE MENÚS ---
+            const etapas = [
+                { id: 'liberacion', title: "1- Liberación", desc: "Sanidad y victoria espiritual.", icon: "shield" },
+                { id: 'arrepentimiento', title: "2- Arrepentimiento", desc: "Cambio de mente hacia Dios.", icon: "heart" },
+                { id: 'aguas', title: "3- Bautismo en las aguas", desc: "Sepultando el pasado.", icon: "droplets" },
+                { id: 'espiritu', title: "4- Espíritu Santo", desc: "Poder y sello de Dios.", icon: "star" },
+                { id: 'fuego', title: "5- Bautismo de fuego", desc: "Purificación y madurez.", icon: "flame" },
+                { id: 'servir', title: "6- Servir", desc: "Evangelista, Pastor y Maestro.", icon: "graduation-cap" }
+            ];
+
+            const subMenus = {
+                liberacion: [
+                    { id: 'biblia', title: "¿EXISTEN LOS DEMONIOS?", desc: "Fundamentos bíblicos.", icon: "book-open" },
+                    { id: 'sintomas', title: "12 SEÑALES", desc: "Cómo identificar opresión.", icon: "activity" },
+                    { id: 'entran', title: "¿CÓMO ENTRAN?", desc: "Puertas y legalidad.", icon: "unlock" },
+                    { id: 'depresion', title: "ESPÍRITUS DE DEPRESIÓN", desc: "Guerra en la mente.", icon: "brain" },
+                    { id: 'duda', title: "ESPÍRITUS DE DUDA", desc: "El cáncer de la fe.", icon: "help-circle" },
+                    { id: 'cabeza', title: "DOLORES DE CABEZA", desc: "Opresión física.", icon: "zap" },
+                    { id: 'division', title: "ESPÍRITUS DE DIVISIÓN", desc: "Ataques a la unidad.", icon: "split" },
+                    { id: 'pasosLiberacion', title: "8 PASOS PARA LA LIBERACIÓN", desc: "Guía para la victoria.", icon: "footprints" }
+                ],
+                arrepentimiento: [
+                    { id: 'pasosArrepentimiento', title: "7 PASOS PARA EL ARREPENTIMIENTO", desc: "Novedad de vida.", icon: "refresh-cw" }
+                ],
+                aguas: [
+                    { id: 'ensenanzaAguas', title: "BAUTISMO EN LAS AGUAS", desc: "Muerte al yo.", icon: "anchor" }
+                ],
+                espiritu: [
+                    { id: 'ensenanzaEspiritu', title: "PROMESA DEL ESPÍRITU", desc: "Poder y Sello.", icon: "sun" }
+                ],
+                fuego: [
+                    { id: 'queEsFuego', title: "EL BAUTISMO DE FUEGO", desc: "Proceso de purificación.", icon: "flame" },
+                    { id: 'versiculosFuego', title: "VERSÍCULOS CLAVE", desc: "La fe probada.", icon: "book-open" },
+                    { id: 'elDesierto', title: "EN EL DESIERTO...", icon: "mountain", desc: "Proceso, no final." },
+                    { id: 'desiertosEspir', title: "DESIERTOS E INJUSTICIAS", icon: "scale", desc: "Escuela de fe." },
+                    { id: 'sadrac', title: "SADRAC, MESAC Y ABED-NEGO", icon: "users", desc: "Firmeza ante el horno." },
+                    { id: 'preguntasFuego', title: "PREGUNTAS Y RESPUESTAS", icon: "help-circle", desc: "Dudas espirituales." }
+                ],
+                servir: [
+                    { id: 'evangelista', title: "EVANGELISTA", desc: "Alcanzar a los perdidos.", icon: "user-plus" },
+                    { id: 'pastor', title: "PASTOR", desc: "Cuidar es amar.", icon: "users" },
+                    { id: 'maestro', title: "MAESTRO", desc: "Discipular es sembrar.", icon: "book-marked" }
+                ]
+            };
+
+            // --- BASE DE DATOS DE CONTENIDO ---
+            const contenidos = {
+                // 1. LIBERACIÓN
+                biblia: {
+                    titulo: "¿Existen los Demonios?", accent: "bg-slate-900",
+                    tabs: {
+                        realidad: { label: "Realidad", items: ["La Biblia afirma la existencia real de los demonios como seres personales y malignos.", "No son símbolos ni metáforas; Santiago 2:19 dice que creen y tiemblan.", "Son ángeles caídos que se rebelaron contra Dios (2 Pedro 2:4, Judas 1:6).", "Satanás es un ángel caído y líder de este reino (Lucas 10:18, Mateo 25:41)."] },
+                        victoria: { label: "Autoridad", items: ["Jesús liberaba personas expulsando muchos demonios con Su palabra.", "Jesús dio autoridad a Sus discípulos para expulsarlos (Mateo 10:1).", "La Iglesia primitiva continuó esta labor (Hechos 19:11-12).", "La liberación confirma la llegada del Reino de Dios."] }
+                    }
+                },
+                entran: {
+                    titulo: "¿Cómo Entran?", accent: "bg-orange-950",
+                    tabs: {
+                        puertas: { label: "Puertas", items: ["Pecado, desobediencia y rebelión abren brechas.", "Maldición hereditaria: demonios familiares (Éxodo 20:5).", "Ocultismo, Tarot y Horóscopo: son pactos espirituales.", "Traumas y abuso no sanado abren puertas espirituales."], biblia: "Efesios 6:12" },
+                        legalidad: { label: "Legalidad", items: ["Falta de Perdón: Retiene el perdón de Dios y da derechos al diablo.", "Vicios y Adicciones: Dominan la voluntad.", "Inmoralidad Sexual: Crea vínculos espirituales."], biblia: "Mateo 6:14-15" }
+                    }
+                },
+                depresion: {
+                    titulo: "Espíritus de Depresión", accent: "bg-blue-950",
+                    tabs: {
+                        origen: { label: "Raíz", items: ["Raíz espiritual demoníaca oculta que nubla el propósito.", "Actúa como opresión silenciosa disfrazada de tristeza.", "Entra por amargura o traumas de niñez no tratados."], biblia: "Salmos 73:21-22" },
+                        libertad: { label: "Libertad", items: ["Requiere oración con autoridad en el Nombre de Jesús.", "Cambiar el vocabulario: confesar vida sobre la muerte.", "Renovación de la mente con promesas de Dios."], biblia: "Isaías 61:3" }
+                    }
+                },
+                duda: {
+                    titulo: "Espíritus de Duda", accent: "bg-indigo-900",
+                    tabs: {
+                        arma: { label: "Arma", items: ["Arma del diablo para apagar la fe y paralizar decisiones.", "Se disfraza de razonamiento lógico o inteligencia.", "Neutraliza la oración aunque no roba la salvación."], biblia: "Santiago 1:6-8" },
+                        victoria: { label: "Victoria", items: ["Reprender la duda en el Nombre de Jesús activamente.", "Determinar creer aunque las circunstancias digan lo contrario.", "La fe revela a Dios como Padre amoroso."], biblia: "Hebreos 11:1" }
+                    }
+                },
+                cabeza: {
+                    titulo: "Dolores de Cabeza", accent: "bg-stone-900",
+                    tabs: {
+                        origen: { label: "Origen", items: ["No todos son físicos; muchos son ataques espirituales persistentes.", "Resistencia que se manifiesta físicamente en la cabeza.", "El objetivo es desgastar para impedir la oración."], biblia: "Efesios 6:17" },
+                        liberacion: { label: "Victoria", items: ["Expulsión directa en el nombre de Jesús.", "Renovación de la mente mediante la Palabra de Dios.", "Cerrar puertas hereditarias y familiares."], biblia: "Juan 8:36" }
+                    }
+                },
+                division: {
+                    titulo: "Espíritus de División", accent: "bg-red-900",
+                    tabs: {
+                        accion: { label: "Acción", items: ["Culpas a personas en vez del enemigo real.", "Rompen matrimonios y destruyen familias.", "Aíslan a la persona alimentando celos."], biblia: "Proverbios 19:7" },
+                        guerra: { label: "Guerra", items: ["La batalla es espiritual, no carnal.", "Amar al pecador, expulsar al demonio.", "El perdón es un arma poderosa."], biblia: "Romanos 12" }
+                    }
+                },
+                pasosLiberacion: {
+                    titulo: "8 Pasos de Liberación", accent: "bg-amber-950",
+                    tabs: {
+                        guia: { label: "Pasos", items: ["1. Aceptar a Jesús como Salvador absoluto.", "2. Participar de reuniones de liberación.", "3. Andar en Santidad (separado).", "4. Leer la Biblia diariamente.", "5. Evitar malas compañías.", "6. Frecuentar reuniones de miembros.", "7. Ser fiel en diezmos y ofrendas.", "8. Orar sin cesar y vigilar."], biblia: "Juan 8:32" }
+                    }
+                },
+
+                // 2. ARREPENTIMIENTO
+                pasosArrepentimiento: {
+                    titulo: "7 Pasos de Arrepentimiento", accent: "bg-emerald-900",
+                    tabs: {
+                        proceso: { label: "Pasos", items: ["1. Conciencia de novedad de vida.", "2. El Espíritu convence de pecado.", "3. Reconocer los pecados.", "4. Confesar los pecados (1 Juan 1:9).", "5. Odiar/Tener asco del pecado.", "6. Abandonar el pecado (Isaías 55:7).", "7. Olvidar y Bautizarse."], biblia: "Romanos 6:4; Hechos 22:16" }
+                    }
+                },
+
+                // 3. BAUTISMO EN LAS AGUAS
+                ensenanzaAguas: {
+                    titulo: "Bautismo en las Aguas", accent: "bg-cyan-900",
+                    tabs: {
+                        muerte: { label: "Muerte al Yo", items: ["Sepultura de la vieja criatura y de nuestro 'yo'.", "Enterrar nuestras voluntades propias.", "Morir juntamente con Cristo para resucitar a vida nueva.", "Requisito: arrepentimiento sincero previo."], biblia: "Marcos 16:16; Romanos 6:3-4" }
+                    }
+                },
+
+                // 4. ESPÍRITU SANTO
+                ensenanzaEspiritu: {
+                    titulo: "Bautismo Espíritu Santo", accent: "bg-purple-900",
+                    tabs: {
+                        promesa: { label: "Poder", items: ["Garantía de salvación y permanencia en la fe.", "Significa poder, fuerza, coraje e intrepidez.", "Testimonio vivo y vida transformada."], biblia: "Hechos 1:8" },
+                        busqueda: { label: "Requisitos", items: ["Vaciarse del mundo y perdonar rencores.", "Andar en la verdad: palabra honesta.", "Resistir distracciones en la oración.", "La certeza inundará tu interior."], biblia: "Joel 2:28" }
+                    }
+                },
+
+                // 5. BAUTISMO DE FUEGO
+                queEsFuego: {
+                    titulo: "Bautismo de Fuego", accent: "bg-orange-700",
+                    tabs: {
+                        oro: { label: "Purificación", items: ["La fe se perfecciona al ser probada en el horno.", "Dios moldea según Su propósito divino.", "Solidificar la fe y purificar impurezas."], biblia: "1 Pedro 4:12-13" },
+                        proposito: { label: "Propósito", items: ["No es un castigo, es un proceso de refinamiento.", "La batalla espiritual intenta apagar tu espíritu.", "El oro verdadero resiste y sale aprobado."], biblia: "Mateo 3:11" }
+                    }
+                },
+                versiculosFuego: {
+                    titulo: "Versículos Clave", accent: "bg-red-800",
+                    tabs: {
+                        citas: { label: "Biblia", items: ["Mateo 3:11: Bautismo con Espíritu Santo y fuego.", "1 Corintios 3:13: El fuego probará la obra.", "Zacarías 13:9: Los fundiré como la plata.", "1 Pedro 1:7: Fe más preciosa que el oro."], biblia: "Lucas 12:49" }
+                    }
+                },
+                elDesierto: {
+                    titulo: "En el Desierto", accent: "bg-yellow-800",
+                    tabs: {
+                        escuela: { label: "Escuela", items: ["No es un final, es un proceso necesario.", "Se revela lo que hay en el corazón.", "Aprender a depender solo de Dios.", "Etapa temporal antes de la Tierra Prometida."], biblia: "Deut. 8:15-16" },
+                        proceso: { label: "Proceso", items: ["El desierto humilla para luego hacer bien.", "Josué fue preparado allí para ser conquistador.", "El Dios de toda gracia os perfeccionará."], biblia: "1 Pedro 5:10" }
+                    }
+                },
+                desiertosEspir: {
+                    titulo: "Injusticias", accent: "bg-stone-700",
+                    tabs: {
+                        justicia: { label: "Confianza", items: ["Si tu vida está en el Altar, Dios te defenderá.", "No resuelvas por tu propia fuerza carnal.", "José esperó y fue gobernador.", "Jesús es tu abogado capacitado."], biblia: "Génesis 39:21" }
+                    }
+                },
+                sadrac: {
+                    titulo: "Horno de Fuego", accent: "bg-amber-800",
+                    tabs: {
+                        firmeza: { label: "Ejemplo", items: ["No ceder ante la presión del mundo.", "El fuego prueba pero no destruye al fiel.", "Dios no impidió el horno, pero estuvo dentro de él.", "Impactar naciones con el testimonio."], biblia: "Daniel 3:16-29" }
+                    }
+                },
+                preguntasFuego: {
+                    titulo: "Preguntas Fuego", accent: "bg-neutral-900",
+                    tabs: {
+                        faq: { label: "Respuestas", items: ["¿Quién lleva al fuego? El Espíritu Santo (para purificar).", "El Espíritu llena, pero el fuego purifica.", "Sirve para reconocer nuestra humanidad.", "Son varios procesos para madurar."], biblia: "Mateo 4:1" }
+                    }
+                },
+
+                // 6. SERVIR
+                evangelista: {
+                    titulo: "Evangelista", accent: "bg-sky-900",
+                    tabs: {
+                        mision: { label: "Llamado", items: ["Alcanzar a los perdidos.", "Echar fuera demonios en Su nombre.", "Hablar nuevas lenguas.", "Sanidad divina para los enfermos."], biblia: "Marcos 16:17-18" }
+                    }
+                },
+                pastor: {
+                    titulo: "Pastor", accent: "bg-rose-900",
+                    tabs: {
+                        amor: { label: "Corazón", items: ["Cuidar corazones, no solo llenar sillas.", "Amor sin hipocresía.", "Servir con fervor y hospitalidad genuina.", "Cuidar del rebaño con dedicación."], biblia: "Romanos 12:9-13" }
+                    }
+                },
+                maestro: {
+                    titulo: "Maestro", accent: "bg-emerald-950",
+                    tabs: {
+                        siembra: { label: "Discipular", items: ["Sembrar lo eterno en las personas.", "Llevarlos al bautismo en las aguas.", "Enseñar la Palabra con verdad.", "Confiar que Jesús está siempre con nosotros."], biblia: "Mateo 28:19-20" }
+                    }
+                }
+            };
+
+            // SEÑALES DE OPRESIÓN
+            const signals = [
+                { id: 1, name: "Ira descontrolada", icon: "zap", raices: ["Influencia emocional", "Pérdida de control"], versiculo: "Sant. 1:19" },
+                { id: 2, name: "Dolores de cabeza", icon: "activity", raices: ["Opresión persistente", "Resistencia espiritual"], versiculo: "Is. 53:5" },
+                { id: 3, name: "Insomnio crónico", icon: "moon", raices: ["Vulnerabilidad espiritual", "Falta de descanso"], versiculo: "Salmos 4:8" },
+                { id: 4, name: "Enfermedades", icon: "alert-triangle", raices: ["Resistencia a la sanidad", "Causas espirituales"], versiculo: "Is. 53:4" },
+                { id: 5, name: "Miedo constante", icon: "lock", raices: ["Parálisis de fe", "Temor al futuro"], versiculo: "2 Tim. 1:7" },
+                { id: 6, name: "Epilepsia", icon: "activity", raices: ["Origen espiritual", "Limitación"], versiculo: "Marcos 9:17" },
+                { id: 7, name: "Pensamientos suicidas", icon: "skull", raices: ["Mentiras del enemigo", "Negar amor de Dios"], versiculo: "Sal. 118:17" },
+                { id: 8, name: "Depresión profunda", icon: "heart", raices: ["Manto de pesadez", "Aislamiento"], versiculo: "Sal. 42:11" },
+                { id: 9, name: "Vicios", icon: "droplets", raices: ["Pérdida autocontrol", "Puertas abiertas"], versiculo: "Gálatas 5:1" },
+                { id: 10, name: "Inestabilidad", icon: "heart", raices: ["Rupturas constantes", "Ataque familiar"], versiculo: "Prov. 18:22" },
+                { id: 11, name: "Voces y Visiones", icon: "message-circle", raices: ["Confusión", "Engaño espiritual"], versiculo: "1 Juan 4:1" },
+                { id: 12, name: "Ocultismo", icon: "star", raices: ["Pacto espiritual", "Puerta directa"], versiculo: "Deut. 18:10" }
+            ];
+
+            // --- LÓGICA DE NAVEGACIÓN ---
+            useEffect(() => {
+                let activeId = '';
+                if (view === 'main') return;
+                
+                if (view === 'liberacion') activeId = liberView;
+                else if (view === 'arrepentimiento') activeId = arrepentimientoView;
+                else if (view === 'aguas') activeId = aguasView;
+                else if (view === 'espiritu') activeId = espirituView;
+                else if (view === 'fuego') activeId = fuegoView;
+                else if (view === 'servir') activeId = servirView;
+                
+                // Si la vista activa es un submenú, resetear scroll
+                window.scrollTo(0, 0);
+
+                // Establecer pestaña activa
+                const content = contenidos[activeId];
+                if (content && content.tabs) {
+                    setActiveTab(Object.keys(content.tabs)[0]);
+                }
+            }, [view, liberView, arrepentimientoView, aguasView, espirituView, fuegoView, servirView]);
+
+            const handleBack = () => {
+                if (selectedItem) { setSelectedItem(null); return; }
+                
+                const isAtSubMenu = { 
+                    liberacion: liberView, 
+                    arrepentimiento: arrepentimientoView, 
+                    aguas: aguasView, 
+                    espiritu: espirituView, 
+                    fuego: fuegoView, 
+                    servir: servirView 
+                }[view] === 'menu';
+                
+                if (view === 'main' || isAtSubMenu) setView('main');
+                else {
+                    if (view === 'liberacion') setLiberView('menu');
+                    if (view === 'arrepentimiento') setArrepentimientoView('menu');
+                    if (view === 'aguas') setAguasView('menu');
+                    if (view === 'espiritu') setEspirituView('menu');
+                    if (view === 'fuego') setFuegoView('menu');
+                    if (view === 'servir') setServirView('menu');
+                }
+            };
+
+            const getActiveSubId = () => {
+                if (view === 'main') return null;
+                return { 
+                    liberacion: liberView, 
+                    arrepentimiento: arrepentimientoView, 
+                    aguas: aguasView, 
+                    espiritu: espirituView, 
+                    fuego: fuegoView, 
+                    servir: servirView 
+                }[view];
+            };
+
+            const activeSubId = getActiveSubId();
+            const content = contenidos[activeSubId];
+
+            return (
+                <div className="min-h-screen pb-32">
+                    <div className="max-w-md mx-auto p-6">
+                        
+                        {/* HEADER */}
+                        <header className="text-center my-12 animate-fade">
+                            <Icon name="cross" className="w-6 h-6 text-slate-300 mx-auto mb-6" />
+                            <h1 className="text-3xl font-black text-slate-900 leading-tight">
+                                6 ETAPAS QUE <br/>
+                                <span className="text-slate-400 italic font-serif font-normal uppercase text-lg tracking-widest">todo cristiano</span><br/>
+                                DEBE PASAR
+                            </h1>
+                            <div className="h-1 w-12 bg-amber-200 mx-auto mt-6 rounded-full"></div>
+                        </header>
+
+                        {/* VISTA PRINCIPAL (GRID) */}
+                        {view === 'main' && (
+                            <div className="grid gap-4 animate-slide">
+                                {etapas.map(e => (
+                                    <button key={e.id} onClick={() => setView(e.id)} className="group bg-white border border-slate-100 p-6 rounded-[2rem] text-left flex items-center gap-5 shadow-sm active:scale-95 transition-all">
+                                        <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-50 group-hover:text-amber-600 transition-colors">
+                                            <Icon name={e.icon} className="w-7 h-7" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="font-bold text-slate-900 text-sm uppercase tracking-tight">{e.title}</h3>
+                                            <p className="text-slate-400 text-[9px] mt-1 uppercase tracking-widest leading-none">{e.desc}</p>
+                                        </div>
+                                        <Icon name="chevron-right" className="w-4 h-4 text-slate-200 group-hover:text-amber-300" />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* LISTADOS DE SUB-MENÚS */}
+                        {view !== 'main' && activeSubId === 'menu' && (
+                            <div className="animate-slide">
+                                <button onClick={handleBack} className="flex items-center gap-2 text-slate-400 mb-8 font-bold text-[10px] uppercase tracking-widest">
+                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver a Etapas
+                                </button>
+                                <h2 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-6 px-2">
+                                    {view === 'liberacion' && "Módulo 1: Liberación"}
+                                    {view === 'arrepentimiento' && "Módulo 2: Arrepentimiento"}
+                                    {view === 'aguas' && "Módulo 3: Bautismo Aguas"}
+                                    {view === 'espiritu' && "Módulo 4: Espíritu Santo"}
+                                    {view === 'fuego' && "Módulo 5: Bautismo Fuego"}
+                                    {view === 'servir' && "Módulo 6: Servir"}
+                                </h2>
+                                <div className="space-y-3">
+                                    {subMenus[view].map(sub => (
+                                        <button key={sub.id} onClick={() => {
+                                            if (view === 'liberacion') setLiberView(sub.id);
+                                            if (view === 'arrepentimiento') setArrepentimientoView(sub.id);
+                                            if (view === 'aguas') setAguasView(sub.id);
+                                            if (view === 'espiritu') setEspirituView(sub.id);
+                                            if (view === 'fuego') setFuegoView(sub.id);
+                                            if (view === 'servir') setServirView(sub.id);
+                                        }} className="w-full bg-white border border-slate-100 p-5 rounded-2xl text-left flex items-center gap-4 hover:bg-slate-50 shadow-sm transition-all active:scale-95">
+                                            <div className="text-slate-300 shrink-0"><Icon name={sub.icon} /></div>
+                                            <div className="flex-1 min-w-0">
+                                                <h4 className="font-bold text-slate-800 text-xs uppercase truncate">{sub.title}</h4>
+                                                <p className="text-[9px] text-slate-400 uppercase tracking-tighter truncate">{sub.desc}</p>
+                                            </div>
+                                            <Icon name="chevron-right" className="w-3 h-3 text-slate-200" />
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* CONTENIDO DETALLADO (TARJETAS) */}
+                        {content && activeSubId !== 'menu' && activeSubId !== 'sintomas' && !selectedItem && (
+                            <div className="animate-slide">
+                                <button onClick={handleBack} className="flex items-center gap-2 text-slate-400 mb-6 font-bold text-[10px] uppercase tracking-widest">
+                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver
+                                </button>
+                                <div className="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-50">
+                                    <div className={`p-10 text-white ${content.accent}`}>
+                                        <h2 className="text-2xl font-serif italic leading-tight">{content.titulo}</h2>
+                                    </div>
+                                    <div className="flex border-b border-slate-50 overflow-x-auto no-scrollbar">
+                                        {Object.keys(content.tabs).map(key => (
+                                            <button key={key} onClick={() => setActiveTab(key)} className={`flex-1 py-5 px-4 text-[9px] font-black uppercase tracking-widest transition-all border-b-2 whitespace-nowrap ${activeTab === key ? 'text-slate-900 border-slate-900 bg-slate-50' : 'text-slate-300 border-transparent'}`}>
+                                                {content.tabs[key].label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <div className="p-8 min-h-[300px]">
+                                        <div className="space-y-6">
+                                            {content.tabs[activeTab]?.items.map((item, i) => (
+                                                <div key={i} className="flex gap-4 items-start">
+                                                    <Icon name="check-circle-2" className="w-4 h-4 text-slate-200 mt-0.5 shrink-0" />
+                                                    <p className="text-slate-600 text-sm leading-relaxed font-serif italic">{item}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        {content.tabs[activeTab]?.biblia && (
+                                            <div className="mt-12 p-6 bg-slate-50 rounded-3xl text-center border border-slate-100">
+                                                <Icon name="quote" className="w-4 h-4 mb-3 opacity-20 mx-auto" />
+                                                <p className="italic text-slate-500 text-xs">"{content.tabs[activeTab].biblia}"</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* VISTA ESPECIAL: 12 SEÑALES */}
+                        {activeSubId === 'sintomas' && !selectedItem && (
+                            <div className="animate-slide">
+                                <button onClick={handleBack} className="flex items-center gap-2 text-slate-400 mb-8 font-bold text-[10px] uppercase tracking-widest">
+                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver
+                                </button>
+                                <div className="grid gap-2">
+                                    {signals.map(s => (
+                                        <button key={s.id} onClick={() => setSelectedItem(s)} className="bg-white p-5 rounded-2xl border border-slate-50 shadow-sm flex items-center gap-4 text-left hover:border-amber-200 transition-all">
+                                            <div className="text-slate-200"><Icon name={s.icon} /></div>
+                                            <span className="font-bold text-xs uppercase text-slate-700 tracking-tight">{s.name}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* DETALLE DE SEÑAL INDIVIDUAL */}
+                        {selectedItem && (
+                            <div className="animate-slide text-center">
+                                <button onClick={() => setSelectedItem(null)} className="flex items-center gap-2 text-slate-400 mb-8 font-bold text-[10px] uppercase tracking-widest mx-auto">
+                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver al Listado
+                                </button>
+                                <div className="bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-50">
+                                    <div className="text-amber-500 mb-6 flex justify-center"><Icon name={selectedItem.icon} className="w-12 h-12" /></div>
+                                    <h3 className="text-2xl font-serif italic mb-10 text-slate-900">{selectedItem.name}</h3>
+                                    <div className="text-left space-y-4 mb-10 border-l-2 border-amber-100 pl-6">
+                                        <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest block mb-2">Análisis Espiritual</span>
+                                        {selectedItem.raices.map((r, i) => <p key={i} className="text-slate-600 text-sm italic leading-relaxed">• {r}</p>)}
+                                    </div>
+                                    <div className="bg-slate-50 p-6 rounded-3xl italic text-slate-400 text-xs border border-slate-100">"{selectedItem.versiculo}"</div>
+                                </div>
+                            </div>
+                        )}
+
+                    </div>
+
+                    {/* FOOTER DE NAVEGACIÓN */}
+                    <footer className="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-slate-100 p-6 flex justify-around items-center z-50">
+                        <button onClick={() => {
+                            setView('main'); 
+                            setLiberView('menu'); setArrepentimientoView('menu'); setAguasView('menu'); setEspirituView('menu'); setFuegoView('menu'); setServirView('menu');
+                            setSelectedItem(null);
+                        }} className={`flex flex-col items-center gap-1.5 transition-all ${view === 'main' ? 'text-slate-900 scale-110' : 'text-slate-300'}`}>
+                            <Icon name="shield" />
+                            <span className="text-[8px] font-black uppercase tracking-widest">Etapas</span>
+                        </button>
+                        
+                        <button onClick={() => {
+                            setView('liberacion'); setLiberView('menu'); setSelectedItem(null);
+                        }} className={`flex flex-col items-center gap-1.5 transition-all ${view === 'liberacion' ? 'text-slate-900 scale-110' : 'text-slate-300'}`}>
+                            <Icon name="zap" />
+                            <span className="text-[8px] font-black uppercase tracking-widest">Guerra</span>
+                        </button>
+                        
+                        <a href={WHATSAPP_LINK} target="_blank" className="flex flex-col items-center gap-1.5 text-slate-300 hover:text-emerald-500 transition-all">
+                            <Icon name="message-circle" />
+                            <span className="text-[8px] font-black uppercase tracking-widest">Ayuda</span>
+                        </a>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
