@@ -15,7 +15,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:italic,wght@0,400;0,700;1,400&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <!-- LibrerÃ­as React -->
+    <!-- Librerías React -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -58,10 +58,10 @@
         };
 
         const App = () => {
-            // Estados de navegaciÃ³n
+            // Estados de navegación
             const [view, setView] = useState('main'); 
             
-            // Estados especÃ­ficos para cada submenÃº
+            // Estados específicos para cada submenú
             const [liberView, setLiberView] = useState('menu');
             const [arrepentimientoView, setArrepentimientoView] = useState('menu');
             const [aguasView, setAguasView] = useState('menu');
@@ -73,24 +73,24 @@
             const [selectedItem, setSelectedItem] = React.useState(null);
             const [showContentView, setShowContentView] = React.useState(false);
 
-            const WHATSAPP_LINK = "https://wa.me/5493718320232?text=Hola,%20necesito%20acompaÃ±amiento%20espiritual.";
+            const WHATSAPP_LINK = "https://wa.me/5493718320232?text=Hola,%20necesito%20acompañamiento%20espiritual.";
 
-            // --- CONFIGURACIÃ“N DE MENÃšS ---
+            // --- CONFIGURACIÓN DE MENÚS ---
             const etapas = [
-                { id: 'liberacion', title: "1- LiberaciÃ³n", desc: "Sanidad y victoria espiritual.", icon: "shield" },
+                { id: 'liberacion', title: "1- Liberación", desc: "Sanidad y victoria espiritual.", icon: "shield" },
                 { id: 'arrepentimiento', title: "2- Arrepentimiento", desc: "Cambio de mente hacia Dios.", icon: "heart" },
                 { id: 'aguas', title: "3- Bautismo en las aguas", desc: "Sepultando el pasado.", icon: "droplets" },
-                { id: 'espiritu', title: "4- Bautismo con el EspÃ­ritu Santo", desc: "Poder y sello de Dios.", icon: "star" },
-                { id: 'fuego', title: "5- Bautismo de fuego", desc: "PurificaciÃ³n y madurez.", icon: "flame" },
+                { id: 'espiritu', title: "4- Bautismo con el Espíritu Santo", desc: "Poder y sello de Dios.", icon: "star" },
+                { id: 'fuego', title: "5- Bautismo de fuego", desc: "Purificación y madurez.", icon: "flame" },
                 { id: 'servir', title: "6- Servir", desc: "Evangelista, Pastor y Maestro.", icon: "graduation-cap" }
             ];
 
             const subMenus = {
                 liberacion: [
-                    { id: 'demonios', title: "Los demonios segÃºn la Biblia", desc: "15 Argumentos BÃ­blicos.", icon: "book-open" },
-                    { id: 'sintomas', title: "SÃ­ntomas de posesiÃ³n maligna", desc: "12 y 50 seÃ±ales.", icon: "alert-triangle" },
-                    { id: 'puertas', title: "Puertas por las que entra el mal", desc: "CÃ³mo nos ataca el enemigo.", icon: "unlock" },
-                    { id: 'pasosLiberacion', title: "8 Pasos para la verdadera liberaciÃ³n", desc: "GuÃ­a para la victoria.", icon: "footprints" }
+                    { id: 'demonios', title: "Los demonios según la Biblia", desc: "15 Argumentos Bíblicos.", icon: "book-open" },
+                    { id: 'sintomas', title: "Síntomas de posesión maligna", desc: "12 y 50 señales.", icon: "alert-triangle" },
+                    { id: 'puertas', title: "Puertas por las que entra el mal", desc: "Cómo nos ataca el enemigo.", icon: "unlock" },
+                    { id: 'pasosLiberacion', title: "8 Pasos para la verdadera liberación", desc: "Guía para la victoria.", icon: "footprints" }
                 ],
                 arrepentimiento: [
                     { id: 'arrepen1', title: "1. CONCIENCIA DE LA NOVEDAD", icon: "sunrise" },
@@ -99,20 +99,20 @@
                     { id: 'arrepen4', title: "4. CONFIESA LOS PECADOS", icon: "mic" },
                     { id: 'arrepen5', title: "5. ODIA EL PECADO", icon: "heart-off" },
                     { id: 'arrepen6', title: "6. ABANDONA EL PECADO", icon: "log-out" },
-                    { id: 'arrepen7', title: "7. OLVIDA Y BAUTÃZATE", icon: "droplets" }
+                    { id: 'arrepen7', title: "7. OLVIDA Y BAUTÍZATE", icon: "droplets" }
                 ],
                 aguas: [
                     { id: 'ensenanzaAguas', title: "BAUTISMO EN LAS AGUAS", desc: "Muerte al yo.", icon: "anchor" }
                 ],
-                // MENÃš 4 ACTUALIZADO
+                // MENÚ 4 ACTUALIZADO
                 espiritu: [
-                    { id: 'significadoEspiritu', title: "BAUTISMO CON EL ESPÃRITU SANTO", desc: "Â¿QuÃ© significa?", icon: "help-circle" },
-                    { id: 'comoRecibir', title: "Â¿CÃ“MO RECIBIRLO?", desc: "9 Pasos fundamentales.", icon: "check-circle" },
-                    { id: 'porQueBautismo', title: "Â¿POR QUÃ‰ DEBEMOS?", desc: "GarantÃ­a de SalvaciÃ³n.", icon: "shield" }
+                    { id: 'significadoEspiritu', title: "BAUTISMO CON EL ESPÍRITU SANTO", desc: "¿Qué significa?", icon: "help-circle" },
+                    { id: 'comoRecibir', title: "¿CÓMO RECIBIRLO?", desc: "9 Pasos fundamentales.", icon: "check-circle" },
+                    { id: 'porQueBautismo', title: "¿POR QUÉ DEBEMOS?", desc: "Garantía de Salvación.", icon: "shield" }
                 ],
                 fuego: [
-                    { id: 'queEsFuego', title: "EL BAUTISMO DE FUEGO", desc: "Proceso de purificaciÃ³n.", icon: "flame" },
-                    { id: 'versiculosFuego', title: "VERSÃCULOS CLAVE", desc: "La fe probada.", icon: "book-open" },
+                    { id: 'queEsFuego', title: "EL BAUTISMO DE FUEGO", desc: "Proceso de purificación.", icon: "flame" },
+                    { id: 'versiculosFuego', title: "VERSÍCULOS CLAVE", desc: "La fe probada.", icon: "book-open" },
                     { id: 'elDesierto', title: "EN EL DESIERTO...", icon: "mountain", desc: "Proceso, no final." },
                     { id: 'desiertosEspir', title: "DESIERTOS E INJUSTICIAS", icon: "scale", desc: "Escuela de fe." },
                     { id: 'sadrac', title: "SADRAC, MESAC Y ABED-NEGO", icon: "users", desc: "Firmeza ante el horno." },
@@ -127,133 +127,133 @@
 
             // --- BASE DE DATOS DE CONTENIDO ---
             const contenidos = {
-                // 1. LIBERACIÃ“N
+                // 1. LIBERACIÓN
                 demonios: {
-                    titulo: "Los demonios segÃºn la Biblia", accent: "bg-slate-900",
+                    titulo: "Los demonios según la Biblia", accent: "bg-slate-900",
                     tabs: {
                         introduccion: { 
-                            label: "IntroducciÃ³n", 
+                            label: "Introducción", 
                             items: [
-                                "La Biblia enseÃ±a de forma clara y coherente que:",
-                                "â€¢ Los demonios existen realmente",
-                                "â€¢ Son Ã¡ngeles caÃ­dos que siguieron a SatanÃ¡s",
-                                "â€¢ ActÃºan como espÃ­ritus inmundos",
-                                "â€¢ Oprimen, engaÃ±an y destruyen",
-                                "â€¢ Reconocen a JesÃºs como SeÃ±or",
-                                "â€¢ Son expulsados por autoridad espiritual",
-                                "â€¢ Permanecen activos hasta el juicio final",
+                                "La Biblia enseña de forma clara y coherente que:",
+                                "• Los demonios existen realmente",
+                                "• Son ángeles caídos que siguieron a Satanás",
+                                "• Actúan como espíritus inmundos",
+                                "• Oprimen, engañan y destruyen",
+                                "• Reconocen a Jesús como Señor",
+                                "• Son expulsados por autoridad espiritual",
+                                "• Permanecen activos hasta el juicio final",
                                 "",
-                                "Negar la existencia literal de los demonios implica negar el testimonio de JesÃºs, de los apÃ³stoles y de la Escritura misma."
+                                "Negar la existencia literal de los demonios implica negar el testimonio de Jesús, de los apóstoles y de la Escritura misma."
                             ], 
                             biblia: "Santiago 2:19" 
                         },
                         existe: { 
                             label: "La Biblia afirma", 
                             items: [
-                                "La Escritura presenta a los demonios como seres espirituales reales, personales y malignos, no como sÃ­mbolos ni metÃ¡foras.",
+                                "La Escritura presenta a los demonios como seres espirituales reales, personales y malignos, no como símbolos ni metáforas.",
                                 "",
                                 "Santiago 2:19 (LBLA)",
-                                "Â«TÃº crees que Dios es uno. Haces bien; tambiÃ©n los demonios creen, y tiemblan.Â»",
+                                "«Tú crees que Dios es uno. Haces bien; también los demonios creen, y tiemblan.»",
                                 "",
                                 "1 Corintios 10:20 (LBLA)",
-                                "Â«Lo que los gentiles sacrifican, a los demonios lo sacrifican y no a Dios.Â»"
+                                "«Lo que los gentiles sacrifican, a los demonios lo sacrifican y no a Dios.»"
                             ], 
                             biblia: "Santiago 2:19" 
                         },
                         caidos: { 
-                            label: "Ãngeles caÃ­dos", 
+                            label: "Ángeles caídos", 
                             items: [
-                                "La Biblia enseÃ±a que los demonios no fueron creados como demonios, sino que eran Ã¡ngeles que se rebelaron contra Dios.",
+                                "La Biblia enseña que los demonios no fueron creados como demonios, sino que eran ángeles que se rebelaron contra Dios.",
                                 "",
-                                "Apocalipsis 12:3â€“4, 7â€“9 (LBLA)",
-                                "Â«â€¦el dragÃ³nâ€¦ y sus Ã¡ngeles fueron arrojados con Ã©l.Â»",
+                                "Apocalipsis 12:3–4, 7–9 (LBLA)",
+                                "«…el dragón… y sus ángeles fueron arrojados con él.»",
                                 "",
                                 "2 Pedro 2:4 (LBLA)",
-                                "Â«Dios no perdonÃ³ a los Ã¡ngeles cuando pecaronâ€¦Â»",
+                                "«Dios no perdonó a los ángeles cuando pecaron…»",
                                 "",
                                 "Judas 1:6 (LBLA)",
-                                "Â«Ãngeles que no conservaron su dignidad originalâ€¦Â»"
+                                "«Ángeles que no conservaron su dignidad original…»"
                             ], 
                             biblia: "Apocalipsis 12:7-9" 
                         },
                         satanas: { 
-                            label: "SatanÃ¡s lÃ­der", 
+                            label: "Satanás líder", 
                             items: [
-                                "JesÃºs y los apÃ³stoles enseÃ±aron que SatanÃ¡s cayÃ³ y gobierna un reino espiritual maligno.",
+                                "Jesús y los apóstoles enseñaron que Satanás cayó y gobierna un reino espiritual maligno.",
                                 "",
                                 "Lucas 10:18 (LBLA)",
-                                "Â«Yo veÃ­a a SatanÃ¡s caer del cielo como un rayo.Â»",
+                                "«Yo veía a Satanás caer del cielo como un rayo.»",
                                 "",
                                 "Mateo 25:41 (LBLA)",
-                                "Â«El fuego eterno preparado para el diablo y sus Ã¡ngeles.Â»",
+                                "«El fuego eterno preparado para el diablo y sus ángeles.»",
                                 "",
-                                "Mateo 12:24â€“26 (LBLA)",
-                                "Â«BeelzebÃº, prÃ­ncipe de los demoniosâ€¦Â»"
+                                "Mateo 12:24–26 (LBLA)",
+                                "«Beelzebú, príncipe de los demonios…»"
                             ], 
                             biblia: "Lucas 10:18" 
                         },
                         habitar: { 
                             label: "Buscan habitar", 
                             items: [
-                                "JesÃºs explicÃ³ claramente su forma de operar.",
+                                "Jesús explicó claramente su forma de operar.",
                                 "",
-                                "Mateo 12:43â€“45 (LBLA)",
-                                "Â«Cuando el espÃ­ritu inmundo sale del hombreâ€¦ entran y moran allÃ­.Â»",
+                                "Mateo 12:43–45 (LBLA)",
+                                "«Cuando el espíritu inmundo sale del hombre… entran y moran allí.»",
                                 "",
                                 "Lucas 8:27 (LBLA)",
-                                "Â«Un hombre que tenÃ­a demonios desde hacÃ­a mucho tiempoâ€¦Â»"
+                                "«Un hombre que tenía demonios desde hacía mucho tiempo…»"
                             ], 
                             biblia: "Mateo 12:43-45" 
                         },
                         existencia: { 
                             label: "Existencia continua", 
                             items: [
-                                "La Biblia nunca enseÃ±a que dejaron de existir.",
+                                "La Biblia nunca enseña que dejaron de existir.",
                                 "",
                                 "Romanos 8:38 (LBLA)",
-                                "Â«â€¦ni Ã¡ngeles, ni principados, ni poderesâ€¦Â»",
+                                "«…ni ángeles, ni principados, ni poderes…»",
                                 "",
                                 "Efesios 6:12 (LBLA)",
-                                "Â«â€¦fuerzas espirituales de maldad en las regiones celestiales.Â»"
+                                "«…fuerzas espirituales de maldad en las regiones celestiales.»"
                             ], 
                             biblia: "Romanos 8:38" 
                         },
                         liberaba: { 
-                            label: "JesÃºs liberaba", 
+                            label: "Jesús liberaba", 
                             items: [
-                                "La liberaciÃ³n fue una manifestaciÃ³n central del Reino de Dios.",
+                                "La liberación fue una manifestación central del Reino de Dios.",
                                 "",
-                                "Marcos 1:32â€“34 (LBLA)",
-                                "Â«â€¦expulsÃ³ muchos demonios.Â»",
+                                "Marcos 1:32–34 (LBLA)",
+                                "«…expulsó muchos demonios.»",
                                 "",
-                                "Lucas 4:33â€“35 (LBLA)",
-                                "Â«Un hombre que tenÃ­a el espÃ­ritu de un demonio inmundoâ€¦Â»",
+                                "Lucas 4:33–35 (LBLA)",
+                                "«Un hombre que tenía el espíritu de un demonio inmundo…»",
                                 "",
                                 "Mateo 8:16 (LBLA)",
-                                "Â«ExpulsÃ³ a los espÃ­ritus con una palabra.Â»"
+                                "«Expulsó a los espíritus con una palabra.»"
                             ], 
                             biblia: "Marcos 1:32-34" 
                         },
                         multiples: { 
-                            label: "MÃºltiples demonios", 
+                            label: "Múltiples demonios", 
                             items: [
-                                "La cantidad no limitÃ³ Su autoridad.",
+                                "La cantidad no limitó Su autoridad.",
                                 "",
-                                "Marcos 5:8â€“9, 13 (LBLA)",
-                                "Â«Me llamo LegiÃ³n, porque somos muchos.Â»"
+                                "Marcos 5:8–9, 13 (LBLA)",
+                                "«Me llamo Legión, porque somos muchos.»"
                             ], 
                             biblia: "Marcos 5:9" 
                         },
                         reconocen: { 
-                            label: "Reconocen a JesÃºs", 
+                            label: "Reconocen a Jesús", 
                             items: [
                                 "Confiesan Su autoridad aun contra su voluntad.",
                                 "",
                                 "Marcos 3:11 (LBLA)",
-                                "Â«TÃº eres el Hijo de Dios.Â»",
+                                "«Tú eres el Hijo de Dios.»",
                                 "",
                                 "Lucas 8:28 (LBLA)",
-                                "Â«JesÃºs, Hijo del Dios AltÃ­simo.Â»"
+                                "«Jesús, Hijo del Dios Altísimo.»"
                             ], 
                             biblia: "Marcos 3:11" 
                         },
@@ -263,49 +263,49 @@
                                 "La autoridad espiritual fue delegado conscientemente.",
                                 "",
                                 "Mateo 10:1 (LBLA)",
-                                "Â«Les dio autoridad sobre los espÃ­ritus inmundos.Â»",
+                                "«Les dio autoridad sobre los espíritus inmundos.»",
                                 "",
-                                "Lucas 9:1â€“2 (LBLA)",
-                                "Â«Les dio poder y autoridad sobre todos los demonios.Â»"
+                                "Lucas 9:1–2 (LBLA)",
+                                "«Les dio poder y autoridad sobre todos los demonios.»"
                             ], 
                             biblia: "Mateo 10:1" 
                         },
                         expulsaron: { 
-                            label: "DisÃ­pulos expulsaron", 
+                            label: "Disípulos expulsaron", 
                             items: [
                                 "La autoridad funcionaba cuando era ejercida por fe.",
                                 "",
                                 "Lucas 10:17 (LBLA)",
-                                "Â«Hasta los demonios se nos sujetan en Tu nombre.Â»",
+                                "«Hasta los demonios se nos sujetan en Tu nombre.»",
                                 "",
-                                "Marcos 6:12â€“13 (LBLA)",
-                                "Â«Expulsaban muchos demonios.Â»"
+                                "Marcos 6:12–13 (LBLA)",
+                                "«Expulsaban muchos demonios.»"
                             ], 
                             biblia: "Lucas 10:17" 
                         },
                         reino: { 
                             label: "Reino de Dios", 
                             items: [
-                                "La expulsiÃ³n de demonios confirma la llegada del Reino de Dios.",
+                                "La expulsión de demonios confirma la llegada del Reino de Dios.",
                                 "",
                                 "Mateo 12:28 (LBLA)",
-                                "Â«Si Yo echo fuera los demoniosâ€¦ el reino de Dios ha llegado a ustedes.Â»"
+                                "«Si Yo echo fuera los demonios… el reino de Dios ha llegado a ustedes.»"
                             ], 
                             biblia: "Mateo 12:28" 
                         },
                         primitiva: { 
                             label: "Iglesia primitiva", 
                             items: [
-                                "La obra no terminÃ³ con los Evangelios.",
+                                "La obra no terminó con los Evangelios.",
                                 "",
-                                "Hechos 8:6â€“7 (LBLA)",
-                                "Â«Los espÃ­ritus inmundos salÃ­an dando grandes voces.Â»",
+                                "Hechos 8:6–7 (LBLA)",
+                                "«Los espíritus inmundos salían dando grandes voces.»",
                                 "",
-                                "Hechos 16:16â€“18 (LBLA)",
-                                "Â«Te ordeno en el nombre de Jesucristo que salgas de ella.Â»",
+                                "Hechos 16:16–18 (LBLA)",
+                                "«Te ordeno en el nombre de Jesucristo que salgas de ella.»",
                                 "",
-                                "Hechos 19:11â€“12 (LBLA)",
-                                "Â«Los espÃ­ritus malos salÃ­an.Â»"
+                                "Hechos 19:11–12 (LBLA)",
+                                "«Los espíritus malos salían.»"
                             ], 
                             biblia: "Hechos 16:18" 
                         },
@@ -315,23 +315,23 @@
                                 "La Biblia muestra dos estados distintos.",
                                 "",
                                 "Lucas 8:31 (LBLA)",
-                                "Â«Le rogaban que no los enviara al abismo.Â»",
+                                "«Le rogaban que no los enviara al abismo.»",
                                 "",
-                                "Apocalipsis 9:1â€“3 (LBLA)",
-                                "Â«Del pozo del abismoâ€¦ salenâ€¦Â»"
+                                "Apocalipsis 9:1–3 (LBLA)",
+                                "«Del pozo del abismo… salen…»"
                             ], 
                             biblia: "Lucas 8:31" 
                         },
                         organizados: { 
                             label: "Reino organizado", 
                             items: [
-                                "Los demonios forman un reino organizado bajo SatanÃ¡s.",
+                                "Los demonios forman un reino organizado bajo Satanás.",
                                 "",
                                 "Mateo 12:26 (LBLA)",
-                                "Â«Si SatanÃ¡s expulsa a SatanÃ¡sâ€¦Â»",
+                                "«Si Satanás expulsa a Satanás…»",
                                 "",
                                 "Efesios 6:12 (LBLA)",
-                                "Â«Principados, potestades, fuerzas espirituales de maldad.Â»"
+                                "«Principados, potestades, fuerzas espirituales de maldad.»"
                             ], 
                             biblia: "Efesios 6:12" 
                         },
@@ -341,154 +341,154 @@
                                 "Saben que su condena es segura.",
                                 "",
                                 "Mateo 8:29 (LBLA)",
-                                "Â«Â¿Has venido para atormentarnos antes de tiempo?Â»",
+                                "«¿Has venido para atormentarnos antes de tiempo?»",
                                 "",
                                 "Santiago 2:19 (LBLA)",
-                                "Â«Los demonios creen, y tiemblan.Â»"
+                                "«Los demonios creen, y tiemblan.»"
                             ], 
                             biblia: "Mateo 8:29" 
                         }
                     }
                 },
                 sintomas: {
-                    titulo: "SÃ­ntomas de posesiÃ³n maligna", accent: "bg-red-800",
+                    titulo: "Síntomas de posesión maligna", accent: "bg-red-800",
                     tabs: {
                         intro: { 
-                            label: "ðŸ“‹ IntroducciÃ³n", 
+                            label: "📋 Introducción", 
                             items: [
-                                "Los sÃ­ntomas de posesiÃ³n o opresiÃ³n demonÃ­aca pueden manifestarse de diversas formas.",
-                                "A continuaciÃ³n,presentamos dos recursos importantes para identificar estas seÃ±ales.",
+                                "Los síntomas de posesión o opresión demoníaca pueden manifestarse de diversas formas.",
+                                "A continuación,presentamos dos recursos importantes para identificar estas señales.",
                                 "",
-                                "â€¢ 12 SÃ­ntomas principales: Las seÃ±ales mÃ¡s comunes",
-                                "â€¢ 50 SÃ­ntomas: Listado completo de seÃ±ales",
+                                "• 12 Síntomas principales: Las señales más comunes",
+                                "• 50 Síntomas: Listado completo de señales",
                                 "",
-                                "Si experimentÃ¡s varios de estos sÃ­ntomas de manera persistente, te recomendamos acercarte a una filial de la Iglesia de Dios para recibir oraciÃ³n de liberaciÃ³n."
+                                "Si experimentás varios de estos síntomas de manera persistente, te recomendamos acercarte a una filial de la Iglesia de Dios para recibir oración de liberación."
                             ], 
                             biblia: "Mateo 7:16" 
                         }
                     },
                     subMenus: [
-                        { id: 'sintomas12', title: "12 SÃ­ntomas principales", icon: "alert-triangle" },
-                        { id: 'sintomas50', title: "50 SÃ­ntomas", icon: "list" }
+                        { id: 'sintomas12', title: "12 Síntomas principales", icon: "alert-triangle" },
+                        { id: 'sintomas50', title: "50 Síntomas", icon: "list" }
                     ]
                 },
                 sintomas12: {
-                    titulo: "12 SÃ­ntomas principales de opresiÃ³n demonÃ­aca", accent: "bg-red-800",
+                    titulo: "12 Síntomas principales de opresión demoníaca", accent: "bg-red-800",
                     tabs: {
                         intro: { 
-                            label: "ðŸ“– Fundamento BÃ­blico", 
+                            label: "📖 Fundamento Bíblico", 
                             items: [
-                                "JesÃºs enseÃ±Ã³ que 'el Ã¡rbol se conoce por sus frutos'.",
-                                "La obra demonÃ­aca no siempre se manifiesta de forma extrema; muchas veces actÃºa de manera silenciosa, persistente y destructiva.",
-                                "Cuando los problemas se repiten sin soluciÃ³n humana, es necesario discernir el origen espiritual.",
+                                "Jesús enseñó que 'el árbol se conoce por sus frutos'.",
+                                "La obra demoníaca no siempre se manifiesta de forma extrema; muchas veces actúa de manera silenciosa, persistente y destructiva.",
+                                "Cuando los problemas se repiten sin solución humana, es necesario discernir el origen espiritual.",
                                 "",
-                                "Esto no quita la responsabilidad personal: el diablo actÃºa donde hay puertas abiertas por el pecado, la desobediencia o el apego al mundo.",
-                                "La libertad verdadera requiere expulsiÃ³n del mal y cambio de conducta."
+                                "Esto no quita la responsabilidad personal: el diablo actúa donde hay puertas abiertas por el pecado, la desobediencia o el apego al mundo.",
+                                "La libertad verdadera requiere expulsión del mal y cambio de conducta."
                             ], 
                             biblia: "Mateo 7:16" 
                         },
                         senales: { 
-                            label: "ðŸš¨ 12 SeÃ±ales", 
+                            label: "🚨 12 Señales", 
                             items: [
-                                "1 - ðŸ˜¡ Ira descontrolada: Explosiones de enojo, violencia verbal o fÃ­sica y pÃ©rdida de dominio propio.",
+                                "1 - 😡 Ira descontrolada: Explosiones de enojo, violencia verbal o física y pérdida de dominio propio.",
                                 "",
-                                "2 - ðŸ¤• Dolores de cabeza persistentes: Cuando el dolor es constante y no responde a tratamientos.",
+                                "2 - 🤕 Dolores de cabeza persistentes: Cuando el dolor es constante y no responde a tratamientos.",
                                 "",
-                                "3 - ðŸŒ™ Insomnio crÃ³nico: La falta prolongada de descanso afecta cuerpo, mente y espÃ­ritu.",
+                                "3 - 🌙 Insomnio crónico: La falta prolongada de descanso afecta cuerpo, mente y espíritu.",
                                 "",
-                                "4 - ðŸ¥ Enfermedades sin diagnÃ³stico o incurables: Cuando no hay causa mÃ©dica clara.",
+                                "4 - 🏥 Enfermedades sin diagnóstico o incurables: Cuando no hay causa médica clara.",
                                 "",
-                                "5 - ðŸ˜¨ Miedo constante: El temor paraliza la fe y roba la paz.",
+                                "5 - 😨 Miedo constante: El temor paraliza la fe y roba la paz.",
                                 "",
-                                "6 - âš¡ Epilepsia: La Biblia muestra que en ciertos casos tiene origen espiritual.",
+                                "6 - ⚡ Epilepsia: La Biblia muestra que en ciertos casos tiene origen espiritual.",
                                 "",
-                                "7 - ðŸ–¤ Pensamientos suicidas: Mentiras del enemigo que buscan apagar la esperanza.",
+                                "7 - 🖤 Pensamientos suicidas: Mentiras del enemigo que buscan apagar la esperanza.",
                                 "",
-                                "8 - ðŸ˜” DepresiÃ³n profunda: MÃ¡s allÃ¡ del aspecto emocional, puede indicar presencia demonÃ­aca.",
+                                "8 - 😔 Depresión profunda: Más allá del aspecto emocional, puede indicar presencia demoníaca.",
                                 "",
-                                "9 - ðŸ‘ï¸ Visiones y voces: Ver cosas que otros no ven, escuchar voces perturbadoras.",
+                                "9 - 👁️ Visiones y voces: Ver cosas que otros no ven, escuchar voces perturbadoras.",
                                 "",
-                                "10 - ðŸ”„ Comportamientos repetitivos destructivos: Adicciones, patrones de pecado.",
+                                "10 - 🔄 Comportamientos repetitivos destructivos: Adicciones, patrones de pecado.",
                                 "",
-                                "11 - ðŸŒªï¸ Conflictos familiares persistentes: Problemas graves que no se resuelven.",
+                                "11 - 🌪️ Conflictos familiares persistentes: Problemas graves que no se resuelven.",
                                 "",
-                                "12 - ðŸ˜ˆ AtracciÃ³n a lo oculto: InterÃ©s obsesivo en tarot, ouija, ocultismo."
+                                "12 - 😈 Atracción a lo oculto: Interés obsesivo en tarot, ouija, ocultismo."
                             ] 
                         },
                         concl: { 
-                            label: "ðŸ’ª ConclusiÃ³n", 
+                            label: "💪 Conclusión", 
                             items: [
-                                "Si experimentÃ¡s varios de estos sÃ­ntomas de manera persistente, te recomendamos acercarte a una filial de la Iglesia de Dios para recibir oraciÃ³n de liberaciÃ³n.",
+                                "Si experimentás varios de estos síntomas de manera persistente, te recomendamos acercarte a una filial de la Iglesia de Dios para recibir oración de liberación.",
                                 "",
-                                "Recuerda: La victoria es nuestra. JesÃºs ya venciÃ³ en la cruz."
+                                "Recuerda: La victoria es nuestra. Jesús ya venció en la cruz."
                             ], 
                             biblia: "Juan 8:36" 
                         }
                     }
                 },
                 sintomas50: {
-                    titulo: "50 SÃ­ntomas de posible posesiÃ³n", accent: "bg-red-900",
+                    titulo: "50 Síntomas de posible posesión", accent: "bg-red-900",
                     tabs: {
                         intro: { 
-                            label: "ðŸ“– Fundamento BÃ­blico", 
+                            label: "📖 Fundamento Bíblico", 
                             items: [
-                                "JesÃºs enseÃ±Ã³ que 'el Ã¡rbol se conoce por sus frutos'.",
-                                "La obra demonÃ­aca no siempre se manifiesta de forma extrema; muchas veces actÃºa de manera silenciosa, persistente y destructiva.",
-                                "Cuando los problemas se repiten sin soluciÃ³n humana, es necesario discernir el origen espiritual.",
+                                "Jesús enseñó que 'el árbol se conoce por sus frutos'.",
+                                "La obra demoníaca no siempre se manifiesta de forma extrema; muchas veces actúa de manera silenciosa, persistente y destructiva.",
+                                "Cuando los problemas se repiten sin solución humana, es necesario discernir el origen espiritual.",
                                 "",
-                                "Los 50 sÃ­ntomas que listamos a continuaciÃ³n son seÃ±ales que han sido observadas en personas que han sido posteriormente liberadas.",
-                                "Si experimentÃ¡s varios de estos sÃ­ntomas de manera persistente, te recomendamos acercarte a una filial de la Iglesia de Dios para oraciÃ³n de liberaciÃ³n.",
+                                "Los 50 síntomas que listamos a continuación son señales que han sido observadas en personas que han sido posteriormente liberadas.",
+                                "Si experimentás varios de estos síntomas de manera persistente, te recomendamos acercarte a una filial de la Iglesia de Dios para oración de liberación.",
                                 "",
-                                '"El ladrÃ³n no viene sino para hurtar y matar y destruir; Yo he venido para que tengan vida, y para que la tengan en abundancia." Juan 10:10'
+                                '"El ladrón no viene sino para hurtar y matar y destruir; Yo he venido para que tengan vida, y para que la tengan en abundancia." Juan 10:10'
                             ], 
                             biblia: "Mateo 7:16" 
                         },
                         sintomas: { 
-                            label: "ðŸ“‹ Los 50 SÃ­ntomas", 
+                            label: "📋 Los 50 Síntomas", 
                             items: [
-                                "1. Le produce mucho sueÃ±o leer la Biblia.",
-                                "2. No puede orar mÃ¡s de 3 minutos.",
+                                "1. Le produce mucho sueño leer la Biblia.",
+                                "2. No puede orar más de 3 minutos.",
                                 "3. Sufre de insomnio.",
                                 "4. Cuando ora, se queda dormido o se distrae.",
-                                "5. Sufre de abortos espontÃ¡neos.",
+                                "5. Sufre de abortos espontáneos.",
                                 "6. Sufrimientos en el trabajo, siempre tiene problemas.",
                                 "7. No tiene paz, siempre tiene preocupaciones.",
                                 "8. Sufre pesadillas recurrentes.",
                                 "9. Ve sombras o figuras oscuras.",
-                                "10. Le da mucho sueÃ±o cuando lee la Biblia.",
-                                "11. Cuando estÃ¡ en la iglesia, se queda dormido.",
-                                "12. No puede dejar de ver pornografÃ­a.",
+                                "10. Le da mucho sueño cuando lee la Biblia.",
+                                "11. Cuando está en la iglesia, se queda dormido.",
+                                "12. No puede dejar de ver pornografía.",
                                 "13. Se automutila.",
-                                "14. Le dan nÃ¡useas cuando ora.",
-                                "15. Sufre de migraÃ±as o jaquecas.",
+                                "14. Le dan náuseas cuando ora.",
+                                "15. Sufre de migrañas o jaquecas.",
                                 "16. Tiene relaciones sexuales con demonios.",
                                 "17. Cuando ve un cuchillo se imagina matando.",
                                 "18. Come su propia carne.",
                                 "19. Siente agujas en su cuerpo.",
                                 "20. No termina nada de lo que empieza.",
-                                "21. Escribe cartas despidiÃ©ndose de su familia.",
+                                "21. Escribe cartas despidiéndose de su familia.",
                                 "22. Sufre de impotencia o frialdad sexual.",
                                 "23. Sufre lapsus de memoria.",
                                 "24. Es distante con su pareja.",
-                                "25. Le pica todo el cuerpo sin explicaciÃ³n.",
+                                "25. Le pica todo el cuerpo sin explicación.",
                                 "26. Todo lo que toma se rompe.",
                                 "27. Anda siempre cabizbajo.",
                                 "28. Todo lo que compra se rompe.",
                                 "29. Le atraen los tatuajes de demonios.",
                                 "30. Le gusta estar en los cementerios.",
-                                "31. Cuando ve a un reciÃ©n nacido, tiene ganas de matarlo.",
-                                "32. PlaneÃ³ salir como trotamundos.",
+                                "31. Cuando ve a un recién nacido, tiene ganas de matarlo.",
+                                "32. Planeó salir como trotamundos.",
                                 "33. Siente ganas de automutilarse.",
                                 "34. Siente olor a velas o cigarrillos.",
-                                "35. Despierta escuchando a niÃ±os llorar.",
+                                "35. Despierta escuchando a niños llorar.",
                                 "36. Cuando lee la Biblia, quiere rasgarla.",
                                 "37. En sus viajes siempre suceden desgracias.",
-                                "38. SueÃ±a con la muerte de familiares.",
+                                "38. Sueña con la muerte de familiares.",
                                 "39. Aunque gana bien, el dinero no le rinde.",
                                 "40. Tiene sexo con varias personas.",
                                 "41. Ve objetos levitar y moverse.",
-                                "42. Cuando estÃ¡ entre personas, solo escucha burlas.",
-                                "43. Le da mucho sueÃ±o cuando estÃ¡ en culto.",
+                                "42. Cuando está entre personas, solo escucha burlas.",
+                                "43. Le da mucho sueño cuando está en culto.",
                                 "44. Tiene pensamientos de suicidio.",
                                 "45. Se deprime con facilidad.",
                                 "46. Se enoja con facilidad.",
@@ -497,19 +497,19 @@
                                 "49. Tiene miedo constante.",
                                 "50. Tiene pensamientos blasfemos.",
                                 "",
-                                "Si sufre de uno de estos sÃ­ntomas, acÃ©rquese a una filial cuanto antes.",
+                                "Si sufre de uno de estos síntomas, acérquese a una filial cuanto antes.",
                                 "",
-                                '"El ladrÃ³n no viene sino para hurtar y matar y destruir; Yo he venido para que tengan vida, y para que la tengan en abundancia." Juan 10:10'
+                                '"El ladrón no viene sino para hurtar y matar y destruir; Yo he venido para que tengan vida, y para que la tengan en abundancia." Juan 10:10'
                             ]
                         },
                         concl: { 
-                            label: "ðŸ’ª ConclusiÃ³n", 
+                            label: "💪 Conclusión", 
                             items: [
-                                "Si experimentÃ¡s varios de estos sÃ­ntomas de manera persistente, te recomendamos acercarte a una filial de la Iglesia de Dios para recibir oraciÃ³n de liberaciÃ³n.",
+                                "Si experimentás varios de estos síntomas de manera persistente, te recomendamos acercarte a una filial de la Iglesia de Dios para recibir oración de liberación.",
                                 "",
-                                "Recuerda: La victoria es nuestra. JesÃºs ya venciÃ³ en la cruz.",
+                                "Recuerda: La victoria es nuestra. Jesús ya venció en la cruz.",
                                 "",
-                                "No tenÃ©s que vivir atrapado por estas ataduras. Hay esperanza y libertad disponibles en Cristo."
+                                "No tenés que vivir atrapado por estas ataduras. Hay esperanza y libertad disponibles en Cristo."
                             ], 
                             biblia: "Juan 8:36" 
                         }
@@ -519,117 +519,117 @@
                     titulo: "Puertas por las que entra el mal", accent: "bg-gray-800",
                     tabs: {
                         intro: { 
-                            label: "ðŸ“– IntroducciÃ³n", 
+                            label: "📖 Introducción", 
                             items: [
-                                "La Biblia enseÃ±a que existe una batalla espiritual real e invisible.",
-                                "No todo sufrimiento es demonÃ­aco, pero todo pecado, desobediencia o rebeliÃ³n abre puertas espirituales.",
+                                "La Biblia enseña que existe una batalla espiritual real e invisible.",
+                                "No todo sufrimiento es demoníaco, pero todo pecado, desobediencia o rebelión abre puertas espirituales.",
                                 "Donde hay brechas, el diablo entra para robar, matar y destruir.",
                                 "",
-                                "JesÃºs enseÃ±Ã³ que el fruto revela la raÃ­z, y que la libertad solo se mantiene cuando el mal es expulsado y la persona vive en obediencia a la Palabra."
+                                "Jesús enseñó que el fruto revela la raíz, y que la libertad solo se mantiene cuando el mal es expulsado y la persona vive en obediencia a la Palabra."
                             ], 
                             biblia: "Juan 10:10" 
                         }
                     },
                     subMenus: [
-                        { id: 'puertasPrincipio', title: "Principio bÃ­blico", icon: "book-open" },
-                        { id: 'puertasGenetica', title: "Pecado y dimensiÃ³n espiritual", icon: "dna" },
-                        { id: 'puertasMalditos', title: "MaldiciÃ³n hereditaria", icon: "family" },
-                        { id: 'puertasOcultismo', title: "HechicerÃ­a y ocultismo", icon: "sparkles" },
-                        { id: 'puertasAstrologia', title: "AstrologÃ­a y tarot", icon: "star" },
+                        { id: 'puertasPrincipio', title: "Principio bíblico", icon: "book-open" },
+                        { id: 'puertasGenetica', title: "Pecado y dimensión espiritual", icon: "dna" },
+                        { id: 'puertasMalditos', title: "Maldición hereditaria", icon: "family" },
+                        { id: 'puertasOcultismo', title: "Hechicería y ocultismo", icon: "sparkles" },
+                        { id: 'puertasAstrologia', title: "Astrología y tarot", icon: "star" },
                         { id: 'puertasNuevaEra', title: "Movimiento Nueva Era", icon: "globe" },
                         { id: 'puertasTrauma', title: "Trauma y abuso", icon: "heart" },
-                        { id: 'puertasPerdon', title: "Falta de perdÃ³n", icon: "hand-heart" },
+                        { id: 'puertasPerdon', title: "Falta de perdón", icon: "hand-heart" },
                         { id: 'puertasVicios', title: "Vicios y adicciones", icon: "cigarette" },
                         { id: 'puertasSexual', title: "Inmoralidad sexual", icon: "heart-crack" },
                         { id: 'puertasMiedo', title: "Miedo", icon: "frown" },
                         { id: 'puertasDinero', title: "Amor al dinero", icon: "dollar-sign" },
                         { id: 'puertasOrgullo', title: "Orgullo", icon: "crown" },
-                        { id: 'puertasRebelion', title: "RebeliÃ³n", icon: "alert-triangle" },
+                        { id: 'puertasRebelion', title: "Rebelión", icon: "alert-triangle" },
                         { id: 'puertasContraatacar', title: "Tiempo de contraatacar", icon: "sword" },
-                        { id: 'puertasConclusion', title: "ConclusiÃ³n final", icon: "check-circle" }
+                        { id: 'puertasConclusion', title: "Conclusión final", icon: "check-circle" }
                     ]
                 },
                 puertasPrincipio: {
-                    titulo: "Principio bÃ­blico", accent: "bg-gray-700",
+                    titulo: "Principio bíblico", accent: "bg-gray-700",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ”“ Principio", 
+                            label: "🔓 Principio", 
                             items: [
-                                "Algo es demonÃ­aco cuando:",
+                                "Algo es demoníaco cuando:",
                                 "",
-                                "â€¢ Lleva a adorar algo o alguien fuera del Dios de la Biblia",
-                                "â€¢ Produce rebeliÃ³n contra Dios",
-                                "â€¢ Sustituye la verdad por mentiras espirituales",
+                                "• Lleva a adorar algo o alguien fuera del Dios de la Biblia",
+                                "• Produce rebelión contra Dios",
+                                "• Sustituye la verdad por mentiras espirituales",
                                 "",
-                                '"No podÃ©is servir a dos seÃ±ores" (Mateo 6:24)'
+                                '"No podéis servir a dos señores" (Mateo 6:24)'
                             ], 
                             biblia: "Mateo 6:24" 
                         }
                     }
                 },
                 puertasGenetica: {
-                    titulo: "Pecado y dimensiÃ³n espiritual", accent: "bg-gray-600",
+                    titulo: "Pecado y dimensión espiritual", accent: "bg-gray-600",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ§¬ DimensiÃ³n espiritual", 
+                            label: "🧬 Dimensión espiritual", 
                             items: [
-                                "Las ciencias humanas explican conductas por genÃ©tica o quÃ­mica cerebral, pero no alcanzan el espÃ­ritu.",
-                                "Medicar el cuerpo no expulsa espÃ­ritus.",
+                                "Las ciencias humanas explican conductas por genética o química cerebral, pero no alcanzan el espíritu.",
+                                "Medicar el cuerpo no expulsa espíritus.",
                                 "",
                                 '"Porque nuestra lucha no es contra sangre y carne..." (Efesios 6:12)',
                                 "",
                                 "Los mismos patrones de:",
-                                "â€¢ vicios",
-                                "â€¢ violencia",
-                                "â€¢ fracaso",
-                                "â€¢ enfermedades",
-                                "pueden repetirse de generaciÃ³n en generaciÃ³n, indicando opresiÃ³n espiritual heredada."
+                                "• vicios",
+                                "• violencia",
+                                "• fracaso",
+                                "• enfermedades",
+                                "pueden repetirse de generación en generación, indicando opresión espiritual heredada."
                             ], 
                             biblia: "Efesios 6:12" 
                         }
                     }
                 },
                 puertasMalditos: {
-                    titulo: "MaldiciÃ³n hereditaria", accent: "bg-gray-500",
+                    titulo: "Maldición hereditaria", accent: "bg-gray-500",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ§¬ MaldiciÃ³n hereditaria", 
+                            label: "🧬 Maldición hereditaria", 
                             items: [
-                                '"Visito la maldad de los padres sobre los hijos hasta la tercera y cuarta generaciÃ³n..." (Ã‰xodo 20:5â€“6)',
+                                '"Visito la maldad de los padres sobre los hijos hasta la tercera y cuarta generación..." (Éxodo 20:5–6)',
                                 "",
-                                "â€¢ Pecados pasados (idolatrÃ­a, hechicerÃ­a, vicios) abren puertas familiares",
-                                "â€¢ SatanÃ¡s reclama 'derechos espirituales' sobre linajes enteros",
-                                "â€¢ La persona afectada no siempre fue quien abriÃ³ la puerta",
+                                "• Pecados pasados (idolatría, hechicería, vicios) abren puertas familiares",
+                                "• Satanás reclama 'derechos espirituales' sobre linajes enteros",
+                                "• La persona afectada no siempre fue quien abrió la puerta",
                                 "",
-                                '"El alma que pecare, esa morirÃ¡" (Ezequiel 18)',
+                                '"El alma que pecare, esa morirá" (Ezequiel 18)',
                                 "",
-                                '"Si el Hijo os libertare, serÃ©is verdaderamente libres" (Juan 8:36)',
+                                '"Si el Hijo os libertare, seréis verdaderamente libres" (Juan 8:36)',
                                 "",
-                                "ðŸ‘‰ La autoridad en el nombre de JesÃºs rompe toda herencia espiritual"
+                                "👉 La autoridad en el nombre de Jesús rompe toda herencia espiritual"
                             ], 
-                            biblia: "Ã‰xodo 20:5" 
+                            biblia: "Éxodo 20:5" 
                         }
                     }
                 },
                 puertasOcultismo: {
-                    titulo: "HechicerÃ­a y ocultismo", accent: "bg-purple-900",
+                    titulo: "Hechicería y ocultismo", accent: "bg-purple-900",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ”® HechicerÃ­a y ocultismo", 
+                            label: "🔮 Hechicería y ocultismo", 
                             items: [
-                                "Toda comunicaciÃ³n con espÃ­ritus fuera del EspÃ­ritu Santo es adoraciÃ³n demonÃ­aca, aunque parezca 'buena' o 'inofensiva'.",
+                                "Toda comunicación con espíritus fuera del Espíritu Santo es adoración demoníaca, aunque parezca 'buena' o 'inofensiva'.",
                                 "",
-                                '"No seahallado en tiâ€¦ quien consulte a los muertos" (Deuteronomio 18:10â€“12)',
+                                '"No seahallado en ti… quien consulte a los muertos" (Deuteronomio 18:10–12)',
                                 "",
                                 "Incluye:",
-                                "â€¢ HechicerÃ­a",
-                                "â€¢ Satanismo",
-                                "â€¢ Wicca",
-                                "â€¢ MÃ©diums",
-                                "â€¢ Contacto con muertos",
-                                "â€¢ Religiones orientales",
-                                "â€¢ Feng shui, cristales, energÃ­a",
-                                "â€¢ Yoga espiritual, meditaciÃ³n trascendental",
+                                "• Hechicería",
+                                "• Satanismo",
+                                "• Wicca",
+                                "• Médiums",
+                                "• Contacto con muertos",
+                                "• Religiones orientales",
+                                "• Feng shui, cristales, energía",
+                                "• Yoga espiritual, meditación trascendental",
                                 "",
                                 '"Yo soy el camino, la verdad y la vida" (Juan 14:6)'
                             ], 
@@ -638,18 +638,18 @@
                     }
                 },
                 puertasAstrologia: {
-                    titulo: "AstrologÃ­a y tarot", accent: "bg-indigo-900",
+                    titulo: "Astrología y tarot", accent: "bg-indigo-900",
                     tabs: {
                         contenido: { 
-                            label: "â­ AstrologÃ­a y tarot", 
+                            label: "⭐ Astrología y tarot", 
                             items: [
-                                '"No alces tus ojos al cieloâ€¦ para adorar las estrellas" (Deuteronomio 4:19)',
+                                '"No alces tus ojos al cielo… para adorar las estrellas" (Deuteronomio 4:19)',
                                 "",
-                                "â€¢ El horÃ³scopo no revela el futuro",
-                                "â€¢ Las predicciones funcionan porque los demonios las fuerzan",
-                                "â€¢ No es juego: es pacto espiritual",
+                                "• El horóscopo no revela el futuro",
+                                "• Las predicciones funcionan porque los demonios las fuerzan",
+                                "• No es juego: es pacto espiritual",
                                 "",
-                                '"No solo de pan vivirÃ¡ el hombreâ€¦" (Mateo 4:4)'
+                                '"No solo de pan vivirá el hombre…" (Mateo 4:4)'
                             ], 
                             biblia: "Deuteronomio 4:19" 
                         }
@@ -659,17 +659,17 @@
                     titulo: "Movimiento Nueva Era", accent: "bg-teal-900",
                     tabs: {
                         contenido: { 
-                            label: "ðŸŒŒ Movimiento Nueva Era", 
+                            label: "🌌 Movimiento Nueva Era", 
                             items: [
-                                "Creencias demonÃ­acas:",
-                                "â€¢ 'Todas las religiones llevan a Dios'",
-                                "â€¢ 'Todos somos dioses'",
-                                "â€¢ ReencarnaciÃ³n",
-                                "â€¢ EnergÃ­as cÃ³smicas",
+                                "Creencias demoníacas:",
+                                "• 'Todas las religiones llevan a Dios'",
+                                "• 'Todos somos dioses'",
+                                "• Reencarnación",
+                                "• Energías cósmicas",
                                 "",
-                                '"Nadie viene al Padre sino por mÃ­" (Juan 14:6)',
+                                '"Nadie viene al Padre sino por mí" (Juan 14:6)',
                                 "",
-                                "ðŸ‘‰ Solo existen dos espÃ­ritus a quien servir: el EspÃ­ritu de Dios y el del diablo."
+                                "👉 Solo existen dos espíritus a quien servir: el Espíritu de Dios y el del diablo."
                             ], 
                             biblia: "Juan 14:6" 
                         }
@@ -679,36 +679,36 @@
                     titulo: "Trauma y abuso", accent: "bg-rose-900",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ§  Trauma y abuso", 
+                            label: "🧠 Trauma y abuso", 
                             items: [
-                                "â€¢ El abuso deja marcas fÃ­sicas, emocionales y espirituales",
-                                "â€¢ La medicina ayuda, pero no expulsa espÃ­ritus",
-                                "â€¢ El dolor no sanado se convierte en puerta espiritual",
+                                "• El abuso deja marcas físicas, emocionales y espirituales",
+                                "• La medicina ayuda, pero no expulsa espíritus",
+                                "• El dolor no sanado se convierte en puerta espiritual",
                                 "",
-                                '"El SeÃ±or sana a los quebrantados de corazÃ³n" (Salmos 147:3)'
+                                '"El Señor sana a los quebrantados de corazón" (Salmos 147:3)'
                             ], 
                             biblia: "Salmos 147:3" 
                         }
                     }
                 },
                 puertasPerdon: {
-                    titulo: "Falta de perdÃ³n", accent: "bg-red-700",
+                    titulo: "Falta de perdón", accent: "bg-red-700",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ¤ Falta de perdÃ³n", 
+                            label: "🤝 Falta de perdón", 
                             items: [
-                                "La falta de perdÃ³n:",
-                                "â€¢ Retiene el perdÃ³n de Dios",
-                                "â€¢ Mantiene al diablo con derechos legales",
-                                "â€¢ Es desobediencia directa a JesÃºs",
+                                "La falta de perdón:",
+                                "• Retiene el perdón de Dios",
+                                "• Mantiene al diablo con derechos legales",
+                                "• Es desobediencia directa a Jesús",
                                 "",
-                                "Mateo 6:14â€“15 (LBLA) â€“ 'Porque si perdonÃ¡is a los hombres sus transgresiones, vuestro Padre celestial tambiÃ©n os perdonarÃ¡ a vosotros. Pero si no perdonÃ¡is a los hombres, tampoco vuestro Padre perdonarÃ¡ vuestras transgresiones.'",
+                                "Mateo 6:14–15 (LBLA) – 'Porque si perdonáis a los hombres sus transgresiones, vuestro Padre celestial también os perdonará a vosotros. Pero si no perdonáis a los hombres, tampoco vuestro Padre perdonará vuestras transgresiones.'",
                                 "",
-                                "Mateo 18:35 (LBLA) â€“ 'AsÃ­ tambiÃ©n mi Padre celestial harÃ¡ con vosotros, si no perdonÃ¡is de corazÃ³n cada uno a su hermano.'",
+                                "Mateo 18:35 (LBLA) – 'Así también mi Padre celestial hará con vosotros, si no perdonáis de corazón cada uno a su hermano.'",
                                 "",
-                                "Marcos 11:25â€“26 (LBLA) â€“ 'Y cuando estÃ©is orando, perdonad si tenÃ©is algo contra alguno, para que tambiÃ©n vuestro Padre que estÃ¡ en los cielos os perdone vuestras transgresiones.'",
+                                "Marcos 11:25–26 (LBLA) – 'Y cuando estéis orando, perdonad si tenéis algo contra alguno, para que también vuestro Padre que está en los cielos os perdone vuestras transgresiones.'",
                                 "",
-                                "ðŸ‘‰ El perdÃ³n no es sentimiento: es decisiÃ³n espiritual."
+                                "👉 El perdón no es sentimiento: es decisión espiritual."
                             ], 
                             biblia: "Mateo 6:14-15" 
                         }
@@ -718,19 +718,19 @@
                     titulo: "Vicios y adicciones", accent: "bg-orange-800",
                     tabs: {
                         contenido: { 
-                            label: "ðŸš¬ Vicios y adicciones", 
+                            label: "🚬 Vicios y adicciones", 
                             items: [
-                                '"NiÃ©guese a sÃ­ mismoâ€¦" (Mateo 16:24â€“27)',
+                                '"Niéguese a sí mismo…" (Mateo 16:24–27)',
                                 "",
                                 "Incluye:",
-                                "â€¢ Drogas",
-                                "â€¢ Alcohol",
-                                "â€¢ Tabaco",
-                                "â€¢ PornografÃ­a",
-                                "â€¢ Juegos de azar",
-                                "â€¢ MedicaciÃ³n abusiva",
+                                "• Drogas",
+                                "• Alcohol",
+                                "• Tabaco",
+                                "• Pornografía",
+                                "• Juegos de azar",
+                                "• Medicación abusiva",
                                 "",
-                                "ðŸ‘‰ Todo lo que domina la voluntad abre puertas demonÃ­acas."
+                                "👉 Todo lo que domina la voluntad abre puertas demoníacas."
                             ], 
                             biblia: "Mateo 16:24" 
                         }
@@ -740,19 +740,19 @@
                     titulo: "Inmoralidad sexual", accent: "bg-pink-800",
                     tabs: {
                         contenido: { 
-                            label: "âš ï¸ Inmoralidad sexual", 
+                            label: "⚠️ Inmoralidad sexual", 
                             items: [
-                                "Romanos 1:26â€“27 â€“ 'Por esto Dios los entregÃ³ a pasiones vergonzosas; pues aun sus mujeres cambiaron el uso natural por el que es contra naturaleza...'",
+                                "Romanos 1:26–27 – 'Por esto Dios los entregó a pasiones vergonzosas; pues aun sus mujeres cambiaron el uso natural por el que es contra naturaleza...'",
                                 "",
-                                "GÃ©nesis 19:4â€“5 â€“ Los hombres de Sodoma.",
+                                "Génesis 19:4–5 – Los hombres de Sodoma.",
                                 "",
-                                "1 Corintios 6:18â€“20 â€“ 'Huid de la fornicaciÃ³n. Cualquier otro pecado que el hombre cometa, estÃ¡ fuera del cuerpo; mas el que fornica, contra su propio cuerpo peca.'",
+                                "1 Corintios 6:18–20 – 'Huid de la fornicación. Cualquier otro pecado que el hombre cometa, está fuera del cuerpo; mas el que fornica, contra su propio cuerpo peca.'",
                                 "",
-                                "GÃ¡latas 5:19â€“21 â€“ 'Y manifiestas son las obras de la carne, que son: adulterio, fornicaciÃ³n, inmundicia, lascivia, idolatrÃ­a, hechicerÃ­as...'",
+                                "Gálatas 5:19–21 – 'Y manifiestas son las obras de la carne, que son: adulterio, fornicación, inmundicia, lascivia, idolatría, hechicerías...'",
                                 "",
-                                "â€¢ El sexo crea vÃ­nculo espiritual",
-                                "â€¢ Fuera del matrimonio profana el cuerpo",
-                                "â€¢ El cuerpo es templo del EspÃ­ritu Santo"
+                                "• El sexo crea vínculo espiritual",
+                                "• Fuera del matrimonio profana el cuerpo",
+                                "• El cuerpo es templo del Espíritu Santo"
                             ], 
                             biblia: "Romanos 1:26-27" 
                         }
@@ -762,19 +762,19 @@
                     titulo: "Miedo", accent: "bg-slate-700",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ˜¨ Miedo", 
+                            label: "😨 Miedo", 
                             items: [
-                                "Romanos 8:15 - 'Pues no habÃ©is recibido el espÃ­ritu de esclavitud para estar otra vez en temor, sino que habÃ©is recibido el espÃ­ritu de adopciÃ³n, por el cual clamamos: Â¡Abba, Padre!'",
+                                "Romanos 8:15 - 'Pues no habéis recibido el espíritu de esclavitud para estar otra vez en temor, sino que habéis recibido el espíritu de adopción, por el cual clamamos: ¡Abba, Padre!'",
                                 "",
                                 "Hebreos 2:15 - 'Y librar a todos los que por el temor de la muerte estaban durante toda la vida sujetos a servidumbre.'",
                                 "",
-                                "1 Juan 4:18 - 'En el amor no hay temor, sino que el perfecto amor echa fuera el temor; porque el temor lleva en sÃ­ castigo.'",
+                                "1 Juan 4:18 - 'En el amor no hay temor, sino que el perfecto amor echa fuera el temor; porque el temor lleva en sí castigo.'",
                                 "",
-                                "â€¢ El miedo paraliza la fe",
-                                "â€¢ Alimenta enfermedades",
-                                "â€¢ AÃ­sla y destruye relaciones",
+                                "• El miedo paraliza la fe",
+                                "• Alimenta enfermedades",
+                                "• Aísla y destruye relaciones",
                                 "",
-                                '"La paz de Dios guardarÃ¡ vuestros corazones" (Filipenses 4:6â€“7)'
+                                '"La paz de Dios guardará vuestros corazones" (Filipenses 4:6–7)'
                             ], 
                             biblia: "Romanos 8:15" 
                         }
@@ -784,13 +784,13 @@
                     titulo: "Amor al dinero", accent: "bg-amber-800",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ’° Amor al dinero", 
+                            label: "💰 Amor al dinero", 
                             items: [
-                                '"RaÃ­z de todos los males es el amor al dinero" (1 Timoteo 6:10)',
+                                '"Raíz de todos los males es el amor al dinero" (1 Timoteo 6:10)',
                                 "",
-                                "â€¢ Es la misma ambiciÃ³n de Lucifer",
-                                "â€¢ Destruye familias y naciones",
-                                "â€¢ Puede habitar en cualquier nivel social"
+                                "• Es la misma ambición de Lucifer",
+                                "• Destruye familias y naciones",
+                                "• Puede habitar en cualquier nivel social"
                             ], 
                             biblia: "1 Timoteo 6:10" 
                         }
@@ -800,32 +800,32 @@
                     titulo: "Orgullo", accent: "bg-yellow-800",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ‘‘ Orgullo", 
+                            label: "👑 Orgullo", 
                             items: [
-                                '"AbominaciÃ³n es a JehovÃ¡ todo altivo de corazÃ³n" (Proverbios 16:5)',
+                                '"Abominación es a Jehová todo altivo de corazón" (Proverbios 16:5)',
                                 "",
-                                "â€¢ No siempre es arrogancia",
-                                "â€¢ Puede ser terquedad disfrazada de timidez",
-                                "â€¢ Impide arrepentimiento",
-                                "â€¢ Ciega contra la verdad",
+                                "• No siempre es arrogancia",
+                                "• Puede ser terquedad disfrazada de timidez",
+                                "• Impide arrepentimiento",
+                                "• Ciega contra la verdad",
                                 "",
-                                "ðŸ‘‰ El orgullo transformÃ³ a Lucifer en SatanÃ¡s."
+                                "👉 El orgullo transformó a Lucifer en Satanás."
                             ], 
                             biblia: "Proverbios 16:5" 
                         }
                     }
                 },
                 puertasRebelion: {
-                    titulo: "RebeliÃ³n", accent: "bg-red-900",
+                    titulo: "Rebelión", accent: "bg-red-900",
                     tabs: {
                         contenido: { 
-                            label: "ðŸš« RebeliÃ³n", 
+                            label: "🚫 Rebelión", 
                             items: [
-                                '"Como pecado de adivinaciÃ³n es la rebeliÃ³n" (1 Samuel 15:23)',
+                                '"Como pecado de adivinación es la rebelión" (1 Samuel 15:23)',
                                 "",
-                                "â€¢ Rebelarse contra la autoridad es rebelarse contra Dios",
-                                "â€¢ Excepto cuando la autoridad exige pecado",
-                                "â€¢ La sumisiÃ³n protege espiritualmente"
+                                "• Rebelarse contra la autoridad es rebelarse contra Dios",
+                                "• Excepto cuando la autoridad exige pecado",
+                                "• La sumisión protege espiritualmente"
                             ], 
                             biblia: "1 Samuel 15:23" 
                         }
@@ -835,35 +835,35 @@
                     titulo: "Tiempo de contraatacar", accent: "bg-red-800",
                     tabs: {
                         contenido: { 
-                            label: "âš”ï¸ Contraatacar", 
+                            label: "⚔️ Contraatacar", 
                             items: [
                                 "La batalla espiritual no es opcional.",
                                 "",
-                                '"Sed sobrios y veladâ€¦" (1 Pedro 5:8)',
+                                '"Sed sobrios y velad…" (1 Pedro 5:8)',
                                 "",
-                                "â€¢ El diablo no descansa",
-                                "â€¢ Si no atacamos, seremos atacados",
-                                "â€¢ La armadura espiritual es ofensiva y defensiva",
+                                "• El diablo no descansa",
+                                "• Si no atacamos, seremos atacados",
+                                "• La armadura espiritual es ofensiva y defensiva",
                                 "",
-                                '"Mayor es el que estÃ¡ en vosotros" (1 Juan 4:4)'
+                                '"Mayor es el que está en vosotros" (1 Juan 4:4)'
                             ], 
                             biblia: "1 Pedro 5:8" 
                         }
                     }
                 },
                 puertasConclusion: {
-                    titulo: "ConclusiÃ³n final", accent: "bg-green-800",
+                    titulo: "Conclusión final", accent: "bg-green-800",
                     tabs: {
                         contenido: { 
-                            label: "ðŸ•Šï¸ ConclusiÃ³n", 
+                            label: "🕊️ Conclusión", 
                             items: [
-                                "ðŸ‘‰ Las puertas espirituales existen",
-                                "ðŸ‘‰ El enemigo entra donde hay brecha",
-                                "ðŸ‘‰ Cristo dio autoridad para cerrar toda puerta",
+                                "👉 Las puertas espirituales existen",
+                                "👉 El enemigo entra donde hay brecha",
+                                "👉 Cristo dio autoridad para cerrar toda puerta",
                                 "",
-                                '"En mi nombre echarÃ¡n fuera demonios" (Marcos 16:17)',
+                                '"En mi nombre echarán fuera demonios" (Marcos 16:17)',
                                 "",
-                                "La libertad no es teorÃ­a.",
+                                "La libertad no es teoría.",
                                 "Es verdad aplicada, fe activa y obediencia total."
                             ], 
                             biblia: "Marcos 16:17" 
@@ -871,75 +871,75 @@
                     }
                 },
                 depresion: {
-                    titulo: "EspÃ­ritus de DepresiÃ³n", accent: "bg-blue-950",
+                    titulo: "Espíritus de Depresión", accent: "bg-blue-950",
                     tabs: {
-                        origen: { label: "RaÃ­z", items: ["RaÃ­z espiritual demonÃ­aca oculta que nubla el propÃ³sito.", "ActÃºa como opresiÃ³n silenciosa disfrazada de tristeza.", "Entra por amargura o traumas de niÃ±ez no tratados."], biblia: "Salmos 73:21-22" },
-                        libertad: { label: "Libertad", items: ["Requiere oraciÃ³n con autoridad en el Nombre de JesÃºs.", "Cambiar el vocabulario: confesar vida sobre la muerte.", "RenovaciÃ³n de la mente con promesas de Dios."], biblia: "IsaÃ­as 61:3" }
+                        origen: { label: "Raíz", items: ["Raíz espiritual demoníaca oculta que nubla el propósito.", "Actúa como opresión silenciosa disfrazada de tristeza.", "Entra por amargura o traumas de niñez no tratados."], biblia: "Salmos 73:21-22" },
+                        libertad: { label: "Libertad", items: ["Requiere oración con autoridad en el Nombre de Jesús.", "Cambiar el vocabulario: confesar vida sobre la muerte.", "Renovación de la mente con promesas de Dios."], biblia: "Isaías 61:3" }
                     }
                 },
                 duda: {
-                    titulo: "EspÃ­ritus de Duda", accent: "bg-indigo-900",
+                    titulo: "Espíritus de Duda", accent: "bg-indigo-900",
                     tabs: {
-                        arma: { label: "Arma", items: ["Arma del diablo para apagar la fe y paralizar decisiones.", "Se disfraza de razonamiento lÃ³gico o inteligencia.", "Neutraliza la oraciÃ³n aunque no roba la salvaciÃ³n."], biblia: "Santiago 1:6-8" },
-                        victoria: { label: "Victoria", items: ["Reprender la duda en el Nombre de JesÃºs activamente.", "Determinar creer aunque las circunstancias digan lo contrario.", "La fe revela a Dios como Padre amoroso."], biblia: "Hebreos 11:1" }
+                        arma: { label: "Arma", items: ["Arma del diablo para apagar la fe y paralizar decisiones.", "Se disfraza de razonamiento lógico o inteligencia.", "Neutraliza la oración aunque no roba la salvación."], biblia: "Santiago 1:6-8" },
+                        victoria: { label: "Victoria", items: ["Reprender la duda en el Nombre de Jesús activamente.", "Determinar creer aunque las circunstancias digan lo contrario.", "La fe revela a Dios como Padre amoroso."], biblia: "Hebreos 11:1" }
                     }
                 },
                 cabeza: {
                     titulo: "Dolores de Cabeza", accent: "bg-stone-900",
                     tabs: {
-                        origen: { label: "Origen", items: ["No todos son fÃ­sicos; muchos son ataques espirituales persistentes.", "Resistencia que se manifiesta fÃ­sicamente en la cabeza.", "El objetivo es desgastar para impedir la oraciÃ³n."], biblia: "Efesios 6:17" },
-                        liberacion: { label: "Victoria", items: ["ExpulsiÃ³n directa en el nombre de JesÃºs.", "RenovaciÃ³n de la mente mediante la Palabra de Dios.", "Cerrar puertas hereditarias y familiares."], biblia: "Juan 8:36" }
+                        origen: { label: "Origen", items: ["No todos son físicos; muchos son ataques espirituales persistentes.", "Resistencia que se manifiesta físicamente en la cabeza.", "El objetivo es desgastar para impedir la oración."], biblia: "Efesios 6:17" },
+                        liberacion: { label: "Victoria", items: ["Expulsión directa en el nombre de Jesús.", "Renovación de la mente mediante la Palabra de Dios.", "Cerrar puertas hereditarias y familiares."], biblia: "Juan 8:36" }
                     }
                 },
                 division: {
-                    titulo: "EspÃ­ritus de DivisiÃ³n", accent: "bg-red-900",
+                    titulo: "Espíritus de División", accent: "bg-red-900",
                     tabs: {
-                        accion: { label: "AcciÃ³n", items: ["Culpas a personas en vez del enemigo real.", "Rompen matrimonios y destruyen familias.", "AÃ­slan a la persona alimentando celos."], biblia: "Proverbios 19:7" },
-                        guerra: { label: "Guerra", items: ["La batalla es espiritual, no carnal.", "Amar al pecador, expulsar al demonio.", "El perdÃ³n es un arma poderosa."], biblia: "Romanos 12" }
+                        accion: { label: "Acción", items: ["Culpas a personas en vez del enemigo real.", "Rompen matrimonios y destruyen familias.", "Aíslan a la persona alimentando celos."], biblia: "Proverbios 19:7" },
+                        guerra: { label: "Guerra", items: ["La batalla es espiritual, no carnal.", "Amar al pecador, expulsar al demonio.", "El perdón es un arma poderosa."], biblia: "Romanos 12" }
                     }
                 },
                 pasosLiberacion: {
-                    titulo: "8 Pasos para la verdadera liberaciÃ³n", accent: "bg-amber-900",
+                    titulo: "8 Pasos para la verdadera liberación", accent: "bg-amber-900",
                     tabs: {
                         intro: { 
-                            label: "IntroducciÃ³n", 
+                            label: "Introducción", 
                             items: [
-                                "Y conocerÃ©is la verdad, y la verdad os harÃ¡ libres (Juan 8:32).",
+                                "Y conoceréis la verdad, y la verdad os hará libres (Juan 8:32).",
                                 "",
-                                "La liberaciÃ³n es un proceso que requiere compromiso constante.",
-                                "Estos 8 pasos son la guÃ­a para mantener la victoria espiritual.",
+                                "La liberación es un proceso que requiere compromiso constante.",
+                                "Estos 8 pasos son la guía para mantener la victoria espiritual.",
                                 "",
                                 "Cada paso es fundamental: sin uno solo, la estructura se debilita.",
-                                "La libertad verdadera no es solo liberaciÃ³n inicial, sino un estilo de vida."
+                                "La libertad verdadera no es solo liberación inicial, sino un estilo de vida."
                             ], 
                             biblia: "Juan 8:32" 
                         }
                     },
                     subMenus: [
-                        { id: 'paso1Aceptar', title: "1. Aceptar a JesÃºs", icon: "heart" },
-                        { id: 'paso2Reuniones', title: "2. Reuniones de liberaciÃ³n", icon: "users" },
+                        { id: 'paso1Aceptar', title: "1. Aceptar a Jesús", icon: "heart" },
+                        { id: 'paso2Reuniones', title: "2. Reuniones de liberación", icon: "users" },
                         { id: 'paso3Santidad', title: "3. Andar en santidad", icon: "star" },
                         { id: 'Paso4Biblia', title: "4. Leer la Biblia", icon: "book-open" },
-                        { id: 'paso5Companias', title: "5. Evitar malas compaÃ±Ã­as", icon: "user-minus" },
+                        { id: 'paso5Companias', title: "5. Evitar malas compañías", icon: "user-minus" },
                         { id: 'paso6Miembros', title: "6. Frecuentar miembros", icon: "church" },
                         { id: 'paso7Diezmos', title: "7. Diezmos y ofrendas", icon: "coins" },
                         { id: 'paso8Orar', title: "8. Orar sin cesar", icon: "prayer" }
                     ]
                 },
                 paso1Aceptar: {
-                    titulo: "1. Aceptar a JesÃºs como Salvador", accent: "bg-red-800",
+                    titulo: "1. Aceptar a Jesús como Salvador", accent: "bg-red-800",
                     tabs: {
                         contenido: { 
-                            label: "Aceptar a JesÃºs", 
+                            label: "Aceptar a Jesús", 
                             items: [
-                                "La liberaciÃ³n comienza con una decisiÃ³n sincera de entrega total.",
-                                "No es religiÃ³n, es reconocer a JesÃºs como SeÃ±or absoluto de tu vida.",
+                                "La liberación comienza con una decisión sincera de entrega total.",
+                                "No es religión, es reconocer a Jesús como Señor absoluto de tu vida.",
                                 "",
-                                "Juan 14:6 - Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mÃ­.",
+                                "Juan 14:6 - Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí.",
                                 "",
-                                "Romanos 10:9 - Si confesares con tu boca que JesÃºs es el SeÃ±or, y creyeres en tu corazÃ³n que Dios le levantÃ³ de los muertos, serÃ¡s salvo.",
+                                "Romanos 10:9 - Si confesares con tu boca que Jesús es el Señor, y creyeres en tu corazón que Dios le levantó de los muertos, serás salvo.",
                                 "",
-                                "El primer paso es reconocer a JesÃºs como SeÃ±or de tu vida, no solo como Salvador."
+                                "El primer paso es reconocer a Jesús como Señor de tu vida, no solo como Salvador."
                             ], 
                             biblia: "Romanos 10:9" 
                         }
@@ -952,17 +952,17 @@
                             label: "Reuniones", 
                             items: [
                                 "La fe se fortalece al estar en la presencia de Dios junto a otros.",
-                                "La liberaciÃ³n es un proceso que se afirma con constancia.",
+                                "La liberación es un proceso que se afirma con constancia.",
                                 "",
-                                "Mateo 18:20 - Porque donde estÃ¡n dos o tres congregados en mi nombre, allÃ­ estoy yo en medio de ellos.",
+                                "Mateo 18:20 - Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.",
                                 "",
                                 "Hebreos 10:25 - No dejando de congregarnos, como algunos tienen por costumbre",
                                 "",
-                                "- La comunidad nos sostiene en los momentos dÃ©biles",
-                                "- Las reuniones de liberaciÃ³n fortalecen la fe",
-                                "- No debes aislarte despuÃ©s de recibir liberaciÃ³n",
+                                "- La comunidad nos sostiene en los momentos débiles",
+                                "- Las reuniones de liberación fortalecen la fe",
+                                "- No debes aislarte después de recibir liberación",
                                 "",
-                                "La liberaciÃ³n se mantiene en comunidad, nunca en soledad."
+                                "La liberación se mantiene en comunidad, nunca en soledad."
                             ], 
                             biblia: "Mateo 18:20" 
                         }
@@ -975,15 +975,15 @@
                             label: "Santidad", 
                             items: [
                                 "Santo significa separado: apartarse del pecado y consagrarse a Dios.",
-                                "No hay liberaciÃ³n verdadera sin una vida limpia delante del SeÃ±or.",
+                                "No hay liberación verdadera sin una vida limpia delante del Señor.",
                                 "",
-                                "1 Pedro 1:15-16 - Sed tambiÃ©n vosotros santos en toda vuestra manera de vivir; porque escrito estÃ¡: Sed santos, porque yo soy santo.",
+                                "1 Pedro 1:15-16 - Sed también vosotros santos en toda vuestra manera de vivir; porque escrito está: Sed santos, porque yo soy santo.",
                                 "",
-                                "2 Corintios 6:17 - Salid de en medio de ellos, y apartaos, dice el SeÃ±or, y no toquÃ©is lo inmundo; y yo os recibirÃ©.",
+                                "2 Corintios 6:17 - Salid de en medio de ellos, y apartaos, dice el Señor, y no toquéis lo inmundo; y yo os recibiré.",
                                 "",
                                 "- Andar en santidad es vivir separado del mundo",
                                 "- Significa tomar decisiones diferentes",
-                                "- Requiere romper con viejos hÃ¡bitos",
+                                "- Requiere romper con viejos hábitos",
                                 "",
                                 "La santidad no es opcional para el hijo de Dios."
                             ], 
@@ -997,41 +997,41 @@
                         contenido: { 
                             label: "La Biblia", 
                             items: [
-                                "La Palabra renueva la mente y fortalece el espÃ­ritu.",
+                                "La Palabra renueva la mente y fortalece el espíritu.",
                                 "Sin alimento espiritual no hay firmeza contra el mal.",
                                 "",
-                                "JosuÃ© 1:8 - Nunca se apartarÃ¡ de tu boca este libro de la ley... porque entonces harÃ¡s prosperar tu camino, y todo te saldrÃ¡ bien.",
+                                "Josué 1:8 - Nunca se apartará de tu boca este libro de la ley... porque entonces harás prosperar tu camino, y todo te saldrá bien.",
                                 "",
-                                "Salmos 119:105 - LÃ¡mpara es a mis pies tu palabra, y lumbrera a mi camino.",
+                                "Salmos 119:105 - Lámpara es a mis pies tu palabra, y lumbrera a mi camino.",
                                 "",
                                 "- Lee la Biblia diariamente, no solo los domingos",
                                 "- Medita en ella hasta que transforme tu pensamiento",
-                                "- La palabra de Dios es espada del espÃ­ritu",
+                                "- La palabra de Dios es espada del espíritu",
                                 "",
                                 "Sin la Biblia, no puedes discernir la verdad del error."
                             ], 
-                            biblia: "JosuÃ© 1:8" 
+                            biblia: "Josué 1:8" 
                         }
                     }
                 },
                 paso5Companias: {
-                    titulo: "5. Evitar malas compaÃ±Ã­as", accent: "bg-orange-800",
+                    titulo: "5. Evitar malas compañías", accent: "bg-orange-800",
                     tabs: {
                         contenido: { 
-                            label: "Malas compaÃ±Ã­as", 
+                            label: "Malas compañías", 
                             items: [
-                                "Las amistades influyen en el carÃ¡cter y pueden arrastrar al pecado.",
-                                "La verdadera liberaciÃ³n requiere cortar con lo que contamina.",
+                                "Las amistades influyen en el carácter y pueden arrastrar al pecado.",
+                                "La verdadera liberación requiere cortar con lo que contamina.",
                                 "",
-                                "1 Corintios 15:33 - No errÃ©is; las malas conversaciones corrompen las buenas costumbres.",
+                                "1 Corintios 15:33 - No erréis; las malas conversaciones corrompen las buenas costumbres.",
                                 "",
-                                "Proverbios 13:20 - El que anda con sabios, sabio serÃ¡; mas el que se junta con necios serÃ¡ quebrantado.",
+                                "Proverbios 13:20 - El que anda con sabios, sabio será; mas el que se junta con necios será quebrantado.",
                                 "",
                                 "- Corta relaciones que te alejan de Dios",
                                 "- Busca amistades que te edifiquen",
-                                "- Las malas compaÃ±Ã­as son puertas al pecado",
+                                "- Las malas compañías son puertas al pecado",
                                 "",
-                                "Tu libertad depende de quiÃ©n rodeas."
+                                "Tu libertad depende de quién rodeas."
                             ], 
                             biblia: "1 Corintios 15:33" 
                         }
@@ -1044,11 +1044,11 @@
                             label: "Reuniones", 
                             items: [
                                 "El cuerpo de Cristo se edifica en unidad.",
-                                "Permanecer firme requiere comuniÃ³n con la iglesia.",
+                                "Permanecer firme requiere comunión con la iglesia.",
                                 "",
-                                "Hechos 2:42 - Y perseveraban en la doctrina de los apÃ³stoles, en la comuniÃ³n unos con otros, en el partimiento del pan y en las oraciones.",
+                                "Hechos 2:42 - Y perseveraban en la doctrina de los apóstoles, en la comunión unos con otros, en el partimiento del pan y en las oraciones.",
                                 "",
-                                "Efesios 4:16 - De quien todo el cuerpo, bien concertado y unite entre sÃ­... recibe su crecimiento para ir edificÃ¡ndose en amor.",
+                                "Efesios 4:16 - De quien todo el cuerpo, bien concertado y unite entre sí... recibe su crecimiento para ir edificándose en amor.",
                                 "",
                                 "- Asiste regularmente a las reuniones",
                                 "- Participa activamente en la iglesia",
@@ -1067,19 +1067,19 @@
                             label: "Diezmos", 
                             items: [
                                 "La fidelidad financiera protege contra la avaricia y el dominio del mal.",
-                                "Reconocer a Dios como SeÃ±or tambiÃ©n en lo econÃ³mico.",
+                                "Reconocer a Dios como Señor también en lo económico.",
                                 "",
-                                "MalaquÃ­as 3:10 - Traed todos los diezmos al alfolÃ­... y probadme ahora en esto, dice JehovÃ¡ de los ejÃ©rcitos, si no os abrirÃ© las ventanas de los cielos.",
+                                "Malaquías 3:10 - Traed todos los diezmos al alfolí... y probadme ahora en esto, dice Jehová de los ejércitos, si no os abriré las ventanas de los cielos.",
                                 "",
-                                "Mateo 6:21 - Porque donde estÃ© vuestro tesoro, allÃ­ estarÃ¡ tambiÃ©n vuestro corazÃ³n.",
+                                "Mateo 6:21 - Porque donde esté vuestro tesoro, allí estará también vuestro corazón.",
                                 "",
                                 "- El diezmo es un principio espiritual",
-                                "- Abre puertas de bendiciÃ³n celestial",
+                                "- Abre puertas de bendición celestial",
                                 "- Es testamento de que Dios es primero",
                                 "",
-                                "Lo que das determina dÃ³nde estÃ¡ tu corazÃ³n."
+                                "Lo que das determina dónde está tu corazón."
                             ], 
-                            biblia: "MalaquÃ­as 3:10" 
+                            biblia: "Malaquías 3:10" 
                         }
                     }
                 },
@@ -1087,20 +1087,20 @@
                     titulo: "8. Orar sin cesar", accent: "bg-purple-800",
                     tabs: {
                         contenido: { 
-                            label: "OraciÃ³n", 
+                            label: "Oración", 
                             items: [
-                                "La oraciÃ³n continua mantiene la comuniÃ³n con Dios.",
+                                "La oración continua mantiene la comunión con Dios.",
                                 "Velar es estar atento para no dar lugar al enemigo.",
                                 "",
                                 "1 Tesalonicenses 5:17 - Orad sin cesar.",
                                 "",
-                                "Mateo 26:41 - Velad y orad, para que no entrÃ©is en tentaciÃ³n; el espÃ­ritu a la verdad estÃ¡ dispuesto, pero la carne es dÃ©bil.",
+                                "Mateo 26:41 - Velad y orad, para que no entréis en tentación; el espíritu a la verdad está dispuesto, pero la carne es débil.",
                                 "",
                                 "- Ora en todo momento, no solo en momentos de necesidad",
-                                "- La oraciÃ³n es tu comunicaciÃ³n con Dios",
+                                "- La oración es tu comunicación con Dios",
                                 "- Vigilar es estar alerta al enemigo",
                                 "",
-                                "La oraciÃ³n constante mantiene la victoria."
+                                "La oración constante mantiene la victoria."
                             ], 
                             biblia: "1 Tesalonicenses 5:17" 
                         }
@@ -1111,7 +1111,7 @@
                 pasosArrepentimiento: {
                     titulo: "7 Pasos de Arrepentimiento", accent: "bg-emerald-900",
                     tabs: {
-                        proceso: { label: "Pasos", items: ["1. Conciencia de novedad de vida.", "2. El EspÃ­ritu convence de pecado.", "3. Reconocer los pecados.", "4. Confesar los pecados (1 Juan 1:9).", "5. Odiar/Tener asco del pecado.", "6. Abandonar el pecado (IsaÃ­as 55:7).", "7. Olvidar y Bautizarse."], biblia: "Romanos 6:4; Hechos 22:16" }
+                        proceso: { label: "Pasos", items: ["1. Conciencia de novedad de vida.", "2. El Espíritu convence de pecado.", "3. Reconocer los pecados.", "4. Confesar los pecados (1 Juan 1:9).", "5. Odiar/Tener asco del pecado.", "6. Abandonar el pecado (Isaías 55:7).", "7. Olvidar y Bautizarse."], biblia: "Romanos 6:4; Hechos 22:16" }
                     }
                 },
 
@@ -1126,9 +1126,9 @@
                                 "",
                                 "Es una persona diferente, un milagro de Dios.",
                                 "",
-                                "Ya no puede vivir como vivÃ­a antes.",
+                                "Ya no puede vivir como vivía antes.",
                                 "",
-                                "El viejo hombre muriÃ³ con Cristo.",
+                                "El viejo hombre murió con Cristo.",
                                 ""
                             ], 
                             biblia: "2 Corintios 5:17" 
@@ -1141,9 +1141,9 @@
                         contenido: { 
                             label: "Dios Convence", 
                             items: [
-                                "Y Ã©l convenciÃ³ al mundo de juicio.",
+                                "Y él convenció al mundo de juicio.",
                                 "",
-                                "El EspÃ­ritu de verdad convince al mundo de pecado.",
+                                "El Espíritu de verdad convince al mundo de pecado.",
                                 "",
                                 "Dios obra en nosotros el querer.",
                                 ""
@@ -1162,10 +1162,10 @@
                                 "",
                                 "Las obras de la carne son manifiestas.",
                                 "",
-                                "Lasæžœæ ‘ del espÃ­ritu tambiÃ©n.",
+                                "Las果树 del espíritu también.",
                                 ""
                             ], 
-                            biblia: "GÃ¡latas 5:19-21" 
+                            biblia: "Gálatas 5:19-21" 
                         }
                     }
                 },
@@ -1179,7 +1179,7 @@
                                 "",
                                 "Dios es fiel y justo para perdonar.",
                                 "",
-                                "La sangre de JesÃºs te limpia.",
+                                "La sangre de Jesús te limpia.",
                                 ""
                             ], 
                             biblia: "1 Juan 1:9" 
@@ -1194,7 +1194,7 @@
                             items: [
                                 "Aborrece el pecado como Dios lo aborrece.",
                                 "",
-                                "El pecado es una abominaciÃ³n.",
+                                "El pecado es una abominación.",
                                 "",
                                 "Huye de la maldad.",
                                 ""
@@ -1209,11 +1209,11 @@
                         contenido: { 
                             label: "Abandona", 
                             items: [
-                                "ApÃ¡rtate del mal.",
+                                "Apártate del mal.",
                                 "",
-                                "No volverÃ¡s a hacerlo.",
+                                "No volverás a hacerlo.",
                                 "",
-                                "No te asociarÃ¡s con Ã©l.",
+                                "No te asociarás con él.",
                                 ""
                             ], 
                             biblia: "Job 22:23" 
@@ -1221,10 +1221,10 @@
                     }
                 },
                 arrepen7: {
-                    titulo: "7. OLVIDA Y BAUTÃZATE", accent: "bg-yellow-400",
+                    titulo: "7. OLVIDA Y BAUTÍZATE", accent: "bg-yellow-400",
                     tabs: {
                         contenido: { 
-                            label: "BautÃ­zate", 
+                            label: "Bautízate", 
                             items: [
                                 "Al bautismo le precede el arrepentimiento.",
                                 "",
@@ -1246,65 +1246,65 @@
                     }
                 },
 
-                // 4. ESPÃRITU SANTO (CONTENIDO ACTUALIZADO)
+                // 4. ESPÍRITU SANTO (CONTENIDO ACTUALIZADO)
                 significadoEspiritu: {
-                    titulo: "Â¿QuÃ© significa?", accent: "bg-purple-900",
+                    titulo: "¿Qué significa?", accent: "bg-purple-900",
                     tabs: {
                         definicion: { 
-                            label: "DefiniciÃ³n", 
+                            label: "Definición", 
                             items: [
-                                "Es el EspÃ­ritu de Dios dentro de nosotros. GarantÃ­a de nuestra salvaciÃ³n y permanencia en la fe.",
-                                "Â¡Significa poder, fuerza, coraje, intrepidez y cuidarse para vivir como JesÃºs viviÃ³!",
-                                "Cuando tenemos el EspÃ­ritu Santo, somos usados como instrumentos en Sus manos.",
-                                "Somos el testimonio vivo: mÃ¡s que hablar, es mostrar una vida transformada."
+                                "Es el Espíritu de Dios dentro de nosotros. Garantía de nuestra salvación y permanencia en la fe.",
+                                "¡Significa poder, fuerza, coraje, intrepidez y cuidarse para vivir como Jesús vivió!",
+                                "Cuando tenemos el Espíritu Santo, somos usados como instrumentos en Sus manos.",
+                                "Somos el testimonio vivo: más que hablar, es mostrar una vida transformada."
                             ], 
                             biblia: "Hechos 1:8" 
                         }
                     }
                 },
                 comoRecibir: {
-                    titulo: "Â¿CÃ³mo recibirlo?", accent: "bg-purple-800",
+                    titulo: "¿Cómo recibirlo?", accent: "bg-purple-800",
                     tabs: {
                         pasos13: { 
-                            label: "1Âº - 3Âº", 
+                            label: "1º - 3º", 
                             items: [
-                                "1Âº VacÃ­o total: Libre de desÃ¡nimo, envidias, contiendas, ira, codicia. (1 Juan 2:15)",
-                                "2Âº Sin rencor: Perdonar de todo corazÃ³n a quien le ofendiÃ³. (Mateo 6:12)",
-                                "3Âº Verdad: Abandonar la mentira. Que su palabra sea sÃ­ o no. (Mateo 5:37)"
+                                "1º Vacío total: Libre de desánimo, envidias, contiendas, ira, codicia. (1 Juan 2:15)",
+                                "2º Sin rencor: Perdonar de todo corazón a quien le ofendió. (Mateo 6:12)",
+                                "3º Verdad: Abandonar la mentira. Que su palabra sea sí o no. (Mateo 5:37)"
                             ], 
                             biblia: "Mateo 5:37" 
                         },
                         pasos46: { 
-                            label: "4Âº - 6Âº", 
+                            label: "4º - 6º", 
                             items: [
-                                "4Âº Pensamiento Ãºnico: No dividir la mente entre Dios y el mundo. (Mateo 6:24)",
-                                "5Âº Conciencia limpia: Confesar pecados y apartarse para alcanzar misericordia. (Prov 28:13)",
-                                "6Âº BÃºsqueda sincera: Hablar con Ã‰l, invitarlo a entrar sin interrupciones. (Jer 33:3)"
+                                "4º Pensamiento único: No dividir la mente entre Dios y el mundo. (Mateo 6:24)",
+                                "5º Conciencia limpia: Confesar pecados y apartarse para alcanzar misericordia. (Prov 28:13)",
+                                "6º Búsqueda sincera: Hablar con Él, invitarlo a entrar sin interrupciones. (Jer 33:3)"
                             ], 
-                            biblia: "JeremÃ­as 33:3" 
+                            biblia: "Jeremías 33:3" 
                         },
                         pasos79: { 
-                            label: "7Âº - 9Âº", 
+                            label: "7º - 9º", 
                             items: [
-                                "7Âº Resistir al diablo: Ã‰l intentarÃ¡ distraer con sueÃ±o o ruidos. Â¡ConcÃ©ntrese en Dios! (Santiago 4:7)",
-                                "8Âº Fe absoluta: Certeza de que acontecerÃ¡ sin necesitar pruebas visibles. (Hebreos 11:1)",
-                                "9Âº ConfirmaciÃ³n: Gozo inexplicable y certeza interior puesta por JesÃºs. No depende de lenguas, sino de certeza. (Joel 2:28)"
+                                "7º Resistir al diablo: Él intentará distraer con sueño o ruidos. ¡Concéntrese en Dios! (Santiago 4:7)",
+                                "8º Fe absoluta: Certeza de que acontecerá sin necesitar pruebas visibles. (Hebreos 11:1)",
+                                "9º Confirmación: Gozo inexplicable y certeza interior puesta por Jesús. No depende de lenguas, sino de certeza. (Joel 2:28)"
                             ], 
                             biblia: "Joel 2:28" 
                         }
                     }
                 },
                 porQueBautismo: {
-                    titulo: "Â¿Por quÃ© debemos?", accent: "bg-purple-950",
+                    titulo: "¿Por qué debemos?", accent: "bg-purple-950",
                     tabs: {
                         razon: { 
-                            label: "GarantÃ­a", 
+                            label: "Garantía", 
                             items: [
-                                "El EspÃ­ritu Santo es la garantÃ­a de la salvaciÃ³n.",
-                                "Impide que seamos engaÃ±ados por nuestras debilidades.",
+                                "El Espíritu Santo es la garantía de la salvación.",
+                                "Impide que seamos engañados por nuestras debilidades.",
                                 "Nos hace crecer constantemente para servirlo mejor.",
-                                "Â¡Nos hace permanecer firmes hasta el dÃ­a de Su vuelta!",
-                                "Desead la leche espiritual para crecer para salvaciÃ³n (1 Pedro 2:1-3)."
+                                "¡Nos hace permanecer firmes hasta el día de Su vuelta!",
+                                "Desead la leche espiritual para crecer para salvación (1 Pedro 2:1-3)."
                             ], 
                             biblia: "Romanos 8:16" 
                         }
@@ -1315,39 +1315,39 @@
                 queEsFuego: {
                     titulo: "Bautismo de Fuego", accent: "bg-orange-700",
                     tabs: {
-                        oro: { label: "PurificaciÃ³n", items: ["La fe se perfecciona al ser probada en el horno.", "Dios moldea segÃºn Su propÃ³sito divino.", "Solidificar la fe y purificar impurezas."], biblia: "1 Pedro 4:12-13" },
-                        proposito: { label: "PropÃ³sito", items: ["No es un castigo, es un proceso de refinamiento.", "La batalla espiritual intenta apagar tu espÃ­ritu.", "El oro verdadero resiste y sale aprobado."], biblia: "Mateo 3:11" }
+                        oro: { label: "Purificación", items: ["La fe se perfecciona al ser probada en el horno.", "Dios moldea según Su propósito divino.", "Solidificar la fe y purificar impurezas."], biblia: "1 Pedro 4:12-13" },
+                        proposito: { label: "Propósito", items: ["No es un castigo, es un proceso de refinamiento.", "La batalla espiritual intenta apagar tu espíritu.", "El oro verdadero resiste y sale aprobado."], biblia: "Mateo 3:11" }
                     }
                 },
                 versiculosFuego: {
-                    titulo: "VersÃ­culos Clave", accent: "bg-red-800",
+                    titulo: "Versículos Clave", accent: "bg-red-800",
                     tabs: {
-                        citas: { label: "Biblia", items: ["Mateo 3:11: Bautismo con EspÃ­ritu Santo y fuego.", "1 Corintios 3:13: El fuego probarÃ¡ la obra.", "ZacarÃ­as 13:9: Los fundirÃ© como la plata.", "1 Pedro 1:7: Fe mÃ¡s preciosa que el oro."], biblia: "Lucas 12:49" }
+                        citas: { label: "Biblia", items: ["Mateo 3:11: Bautismo con Espíritu Santo y fuego.", "1 Corintios 3:13: El fuego probará la obra.", "Zacarías 13:9: Los fundiré como la plata.", "1 Pedro 1:7: Fe más preciosa que el oro."], biblia: "Lucas 12:49" }
                     }
                 },
                 elDesierto: {
                     titulo: "En el Desierto", accent: "bg-yellow-800",
                     tabs: {
-                        escuela: { label: "Escuela", items: ["No es un final, es un proceso necesario.", "Se revela lo que hay en el corazÃ³n.", "Aprender a depender solo de Dios.", "Etapa temporal antes de la Tierra Prometida."], biblia: "Deut. 8:15-16" },
-                        proceso: { label: "Proceso", items: ["El desierto humilla para luego hacer bien.", "JosuÃ© fue preparado allÃ­ para ser conquistador.", "El Dios de toda gracia os perfeccionarÃ¡."], biblia: "1 Pedro 5:10" }
+                        escuela: { label: "Escuela", items: ["No es un final, es un proceso necesario.", "Se revela lo que hay en el corazón.", "Aprender a depender solo de Dios.", "Etapa temporal antes de la Tierra Prometida."], biblia: "Deut. 8:15-16" },
+                        proceso: { label: "Proceso", items: ["El desierto humilla para luego hacer bien.", "Josué fue preparado allí para ser conquistador.", "El Dios de toda gracia os perfeccionará."], biblia: "1 Pedro 5:10" }
                     }
                 },
                 desiertosEspir: {
                     titulo: "Injusticias", accent: "bg-stone-700",
                     tabs: {
-                        justicia: { label: "Confianza", items: ["Si tu vida estÃ¡ en el Altar, Dios te defenderÃ¡.", "No resuelvas por tu propia fuerza carnal.", "JosÃ© esperÃ³ y fue gobernador.", "JesÃºs es tu abogado capacitado."], biblia: "GÃ©nesis 39:21" }
+                        justicia: { label: "Confianza", items: ["Si tu vida está en el Altar, Dios te defenderá.", "No resuelvas por tu propia fuerza carnal.", "José esperó y fue gobernador.", "Jesús es tu abogado capacitado."], biblia: "Génesis 39:21" }
                     }
                 },
                 sadrac: {
                     titulo: "Horno de Fuego", accent: "bg-amber-800",
                     tabs: {
-                        firmeza: { label: "Ejemplo", items: ["No ceder ante la presiÃ³n del mundo.", "El fuego prueba pero no destruye al fiel.", "Dios no impidiÃ³ el horno, pero estuvo dentro de Ã©l.", "Impactar naciones con el testimonio."], biblia: "Daniel 3:16-29" }
+                        firmeza: { label: "Ejemplo", items: ["No ceder ante la presión del mundo.", "El fuego prueba pero no destruye al fiel.", "Dios no impidió el horno, pero estuvo dentro de él.", "Impactar naciones con el testimonio."], biblia: "Daniel 3:16-29" }
                     }
                 },
                 preguntasFuego: {
                     titulo: "Preguntas Fuego", accent: "bg-neutral-900",
                     tabs: {
-                        faq: { label: "Respuestas", items: ["Â¿QuiÃ©n lleva al fuego? El EspÃ­ritu Santo (para purificar).", "El EspÃ­ritu llena, pero el fuego purifica.", "Sirve para reconocer nuestra humanidad.", "Son varios procesos para madurar."], biblia: "Mateo 4:1" }
+                        faq: { label: "Respuestas", items: ["¿Quién lleva al fuego? El Espíritu Santo (para purificar).", "El Espíritu llena, pero el fuego purifica.", "Sirve para reconocer nuestra humanidad.", "Son varios procesos para madurar."], biblia: "Mateo 4:1" }
                     }
                 },
 
@@ -1361,34 +1361,34 @@
                 pastor: {
                     titulo: "Pastor", accent: "bg-rose-900",
                     tabs: {
-                        amor: { label: "CorazÃ³n", items: ["Cuidar corazones, no solo llenar sillas.", "Amor sin hipocresÃ­a.", "Servir con fervor y hospitalidad genuina.", "Cuidar del rebaÃ±o con dedicaciÃ³n."], biblia: "Romanos 12:9-13" }
+                        amor: { label: "Corazón", items: ["Cuidar corazones, no solo llenar sillas.", "Amor sin hipocresía.", "Servir con fervor y hospitalidad genuina.", "Cuidar del rebaño con dedicación."], biblia: "Romanos 12:9-13" }
                     }
                 },
                 maestro: {
                     titulo: "Maestro", accent: "bg-emerald-950",
                     tabs: {
-                        siembra: { label: "Discipular", items: ["Sembrar lo eterno en las personas.", "Llevarlos al bautismo en las aguas.", "EnseÃ±ar la Palabra con verdad.", "Confiar que JesÃºs estÃ¡ siempre con nosotros."], biblia: "Mateo 28:19-20" }
+                        siembra: { label: "Discipular", items: ["Sembrar lo eterno en las personas.", "Llevarlos al bautismo en las aguas.", "Enseñar la Palabra con verdad.", "Confiar que Jesús está siempre con nosotros."], biblia: "Mateo 28:19-20" }
                     }
                 }
             };
 
-            // 12 SEÃ‘ALES DE OPRESIÃ“N
+            // 12 SEÑALES DE OPRESIÓN
             const signals = [
-                { id: 1, name: "Ira descontrolada", icon: "zap", raices: ["Explosiones de enojo, violencia verbal o fÃ­sica y pÃ©rdida de dominio propio.", "Indican influencia espiritual que gobierna las emociones."], versiculo: "Sant. 1:19" },
-                { id: 2, name: "Dolores de cabeza", icon: "activity", raices: ["Dolor constante que no responde a tratamientos.", "Medio de opresiÃ³n para debilitar, confundir y desgastar."], versiculo: "Is. 53:5" },
-                { id: 3, name: "Insomnio crÃ³nico", icon: "moon", raices: ["Falta prolongada de descanso que afecta cuerpo, mente y espÃ­ritu.", "Deja a la persona vulnerable a ataques espirituales."], versiculo: "Salmos 4:8" },
-                { id: 4, name: "Enfermedades", icon: "alert-triangle", raices: ["Sin causa mÃ©dica clara o incurables.", "Puede existir una resistencia espiritual a la sanidad."], versiculo: "Is. 53:4" },
+                { id: 1, name: "Ira descontrolada", icon: "zap", raices: ["Explosiones de enojo, violencia verbal o física y pérdida de dominio propio.", "Indican influencia espiritual que gobierna las emociones."], versiculo: "Sant. 1:19" },
+                { id: 2, name: "Dolores de cabeza", icon: "activity", raices: ["Dolor constante que no responde a tratamientos.", "Medio de opresión para debilitar, confundir y desgastar."], versiculo: "Is. 53:5" },
+                { id: 3, name: "Insomnio crónico", icon: "moon", raices: ["Falta prolongada de descanso que afecta cuerpo, mente y espíritu.", "Deja a la persona vulnerable a ataques espirituales."], versiculo: "Salmos 4:8" },
+                { id: 4, name: "Enfermedades", icon: "alert-triangle", raices: ["Sin causa médica clara o incurables.", "Puede existir una resistencia espiritual a la sanidad."], versiculo: "Is. 53:4" },
                 { id: 5, name: "Miedo constante", icon: "lock", raices: ["Paraliza la fe y roba la paz.", "Convence a la persona de que Dios no va a intervenir."], versiculo: "2 Tim. 1:7" },
-                { id: 6, name: "Epilepsia", icon: "zap", raices: ["La Biblia muestra que en ciertos casos tiene origen espiritual.", "Produce gran limitaciÃ³n y sufrimiento."], versiculo: "Marcos 9:17" },
+                { id: 6, name: "Epilepsia", icon: "zap", raices: ["La Biblia muestra que en ciertos casos tiene origen espiritual.", "Produce gran limitación y sufrimiento."], versiculo: "Marcos 9:17" },
                 { id: 7, name: "Pensamientos suicidas", icon: "skull", raices: ["Mentiras del enemigo que buscan apagar la esperanza.", "Negar el amor de Dios y conducir a la muerte."], versiculo: "Sal. 118:17" },
-                { id: 8, name: "DepresiÃ³n profunda", icon: "frown", raices: ["MÃ¡s allÃ¡ de lo emocional, opresiÃ³n que genera rechazo a la verdad.", "Desesperanza continua."], versiculo: "Sal. 42:11" },
-                { id: 9, name: "Vicios", icon: "wine", raices: ["PÃ©rdida del autocontrol que abre puertas espirituales.", "Permite mayor dominio del mal sobre la voluntad."], versiculo: "GÃ¡latas 5:1" },
-                { id: 10, name: "Inestabilidad", icon: "heart-crack", raices: ["Fracasos constantes en relaciones y rupturas repetidas.", "Ataques directos al propÃ³sito de Dios."], versiculo: "Prov. 18:22" },
-                { id: 11, name: "Voces y Visiones", icon: "ear", raices: ["Experiencias sobrenaturales que no provienen del EspÃ­ritu Santo.", "Confunden, engaÃ±an y dirigen decisiones erradas."], versiculo: "1 Juan 4:1" },
-                { id: 12, name: "Ocultismo", icon: "sparkles", raices: ["Toda prÃ¡ctica espiritual fuera de Dios.", "Puerta directa a la influencia demonÃ­aca."], versiculo: "Deut. 18:10" }
+                { id: 8, name: "Depresión profunda", icon: "frown", raices: ["Más allá de lo emocional, opresión que genera rechazo a la verdad.", "Desesperanza continua."], versiculo: "Sal. 42:11" },
+                { id: 9, name: "Vicios", icon: "wine", raices: ["Pérdida del autocontrol que abre puertas espirituales.", "Permite mayor dominio del mal sobre la voluntad."], versiculo: "Gálatas 5:1" },
+                { id: 10, name: "Inestabilidad", icon: "heart-crack", raices: ["Fracasos constantes en relaciones y rupturas repetidas.", "Ataques directos al propósito de Dios."], versiculo: "Prov. 18:22" },
+                { id: 11, name: "Voces y Visiones", icon: "ear", raices: ["Experiencias sobrenaturales que no provienen del Espíritu Santo.", "Confunden, engañan y dirigen decisiones erradas."], versiculo: "1 Juan 4:1" },
+                { id: 12, name: "Ocultismo", icon: "sparkles", raices: ["Toda práctica espiritual fuera de Dios.", "Puerta directa a la influencia demoníaca."], versiculo: "Deut. 18:10" }
             ];
 
-            // --- LÃ“GICA DE NAVEGACIÃ“N ---
+            // --- LÓGICA DE NAVEGACIÓN ---
             useEffect(() => {
                 let activeId = '';
                 if (view === 'main') return;
@@ -1400,13 +1400,13 @@
                 else if (view === 'fuego') activeId = fuegoView;
                 else if (view === 'servir') activeId = servirView;
                 
-                // Si la vista activa es un submenÃº, resetear scroll
+                // Si la vista activa es un submenú, resetear scroll
                 window.scrollTo(0, 0);
 
-                // Establecer pestaÃ±a activa
+                // Establecer pestaña activa
                 const content = contenidos[activeId];
                 if (content && content.tabs) {
-                    // Si ya hay una pestaÃ±a seleccionada que pertenece al contenido actual, mantenerla
+                    // Si ya hay una pestaña seleccionada que pertenece al contenido actual, mantenerla
                     // De lo contrario, seleccionar la primera
                     setActiveTab(prevTab => content.tabs[prevTab] ? prevTab : Object.keys(content.tabs)[0]);
                 }
@@ -1474,18 +1474,18 @@
                             </h1>
                             <div className="h-1 w-12 bg-amber-200 mx-auto mt-6 rounded-full"></div>
                             
-                            {/* INTRODUCCIÃ“N - Solo en vista principal */}
+                            {/* INTRODUCCIÓN - Solo en vista principal */}
                             {view === 'main' && (
                             <div className="mt-8 text-left bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
-                                <h2 className="text-xs font-black text-slate-800 uppercase tracking-widest mb-3">IntroducciÃ³n</h2>
+                                <h2 className="text-xs font-black text-slate-800 uppercase tracking-widest mb-3">Introducción</h2>
                                 <p className="text-sm text-slate-600 leading-relaxed italic font-serif">
-                                    El camino de la fe cristiana es un proceso transformador que nos lleva desde el encuentro inicial con Cristo hasta el servicio pleno en Su reino. Estas seis etapas representan los pasos fundamentales que todo creyente debe experimentar para alcanzar la madurez espiritual y cumplir con el propÃ³sito divino en su vida.
+                                    El camino de la fe cristiana es un proceso transformador que nos lleva desde el encuentro inicial con Cristo hasta el servicio pleno en Su reino. Estas seis etapas representan los pasos fundamentales que todo creyente debe experimentar para alcanzar la madurez espiritual y cumplir con el propósito divino en su vida.
                                 </p>
                                 <p className="text-sm text-slate-600 leading-relaxed italic font-serif mt-3">
-                                    Cada etapa tiene su importancia Ãºnica y prepara al cristiano para la siguiente. Desde la liberaciÃ³n del pecado hasta el servicio activo en la obra de Dios, este recorrido nos moldea, nos fortalece y nos capacita para ser verdaderos discÃ­pulos de Cristo.
+                                    Cada etapa tiene su importancia única y prepara al cristiano para la siguiente. Desde la liberación del pecado hasta el servicio activo en la obra de Dios, este recorrido nos moldea, nos fortalece y nos capacita para ser verdaderos discípulos de Cristo.
                                 </p>
                                 <p className="text-sm text-slate-600 leading-relaxed italic font-serif mt-3">
-                                    A continuaciÃ³n, exploraremos cada una de estas etapas esenciales que marcan el desarrollo espiritual del creyente:
+                                    A continuación, exploraremos cada una de estas etapas esenciales que marcan el desarrollo espiritual del creyente:
                                 </p>
                             </div>
                             )}
@@ -1509,19 +1509,19 @@
                             </div>
                         )}
 
-                        {/* LISTADOS DE SUB-MENÃšS */}
+                        {/* LISTADOS DE SUB-MENÚS */}
                         {view !== 'main' && activeSubId === 'menu' && (
                             <div className="animate-slide">
                                 <button onClick={handleBack} className="flex items-center gap-2 text-slate-400 mb-8 font-bold text-[10px] uppercase tracking-widest">
                                     <Icon name="arrow-left" className="w-4 h-4" /> Volver a Etapas
                                 </button>
                                 <h2 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-6 px-2">
-                                    {view === 'liberacion' && "MÃ³dulo 1: liberaciÃ³n"}
-                                    {view === 'arrepentimiento' && "MÃ³dulo 2: Arrepentimiento"}
-                                    {view === 'aguas' && "MÃ³dulo 3: Bautismo Aguas"}
-                                    {view === 'espiritu' && "MÃ³dulo 4: EspÃ­ritu Santo"}
-                                    {view === 'fuego' && "MÃ³dulo 5: Bautismo Fuego"}
-                                    {view === 'servir' && "MÃ³dulo 6: Servir"}
+                                    {view === 'liberacion' && "Módulo 1: liberación"}
+                                    {view === 'arrepentimiento' && "Módulo 2: Arrepentimiento"}
+                                    {view === 'aguas' && "Módulo 3: Bautismo Aguas"}
+                                    {view === 'espiritu' && "Módulo 4: Espíritu Santo"}
+                                    {view === 'fuego' && "Módulo 5: Bautismo Fuego"}
+                                    {view === 'servir' && "Módulo 6: Servir"}
                                 </h2>
                                 <div className="space-y-3">
                                     {subMenus[view].map(sub => (
@@ -1552,7 +1552,7 @@
                                     <Icon name="arrow-left" className="w-4 h-4" /> Volver
                                 </button>
                                 
-                                {/* TÃ­tulo del contenido */}
+                                {/* Título del contenido */}
                                 <div className={`p-6 text-white rounded-t-2xl ${content.accent}`}>
                                     <h2 className="text-xl font-serif italic leading-tight">{content.titulo}</h2>
                                 </div>
@@ -1589,7 +1589,7 @@
                                             <button 
                                                 key={key}
                                                 onClick={() => {
-                                                    // Guardar la pestaÃ±a activa y navegar a vista de contenido
+                                                    // Guardar la pestaña activa y navegar a vista de contenido
                                                     setActiveTab(key);
                                                     setShowContentView(true);
                                                 }}
@@ -1637,18 +1637,18 @@
                             </div>
                         )}
 
-                        {/* DETALLE DE SEÃ‘AL INDIVIDUAL */}
+                        {/* DETALLE DE SEÑAL INDIVIDUAL */}
                         {selectedItem && (
                             <div className="animate-slide text-center">
                                 <button onClick={() => setSelectedItem(null)} className="flex items-center gap-2 text-slate-400 mb-8 font-bold text-[10px] uppercase tracking-widest mx-auto">
-                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver a SeÃ±ales
+                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver a Señales
                                 </button>
                                 <div className="bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-50 overflow-hidden">
                                     <div className="text-amber-500 mb-6 flex justify-center"><Icon name={selectedItem.icon} className="w-12 h-12" /></div>
                                     <h3 className="text-2xl font-serif italic mb-10 text-slate-900">{selectedItem.name}</h3>
                                     <div className="text-left space-y-4 mb-10 border-l-2 border-amber-100 pl-6">
-                                        <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest block mb-2">AnÃ¡lisis Espiritual</span>
-                                        {selectedItem.raices.map((r, i) => <p key={i} className="text-slate-600 text-sm italic leading-relaxed">â€¢ {r}</p>)}
+                                        <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest block mb-2">Análisis Espiritual</span>
+                                        {selectedItem.raices.map((r, i) => <p key={i} className="text-slate-600 text-sm italic leading-relaxed">• {r}</p>)}
                                     </div>
                                     <div className="bg-slate-50 p-6 rounded-3xl italic text-slate-400 text-xs border border-slate-100">"{selectedItem.versiculo}"</div>
                                 </div>
@@ -1657,7 +1657,7 @@
 
                     </div>
 
-                    {/* FOOTER DE NAVEGACIÃ“N */}
+                    {/* FOOTER DE NAVEGACIÓN */}
                     <footer className="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-slate-100 p-6 flex justify-around items-center z-50">
                         <button onClick={() => {
                             setView('main'); 
