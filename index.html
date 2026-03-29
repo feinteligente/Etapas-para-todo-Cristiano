@@ -2,45 +2,94 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Etapas del Cristiano</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etapas del Cristiano | Guía de crecimiento espiritual</title>
+    <meta name="description" content="Una guía organizada sobre 6 etapas del camino cristiano: liberación, arrepentimiento, bautismo en las aguas, Espíritu Santo, fuego y servicio.">
+    <meta name="theme-color" content="#f8fafc">
+    <meta name="color-scheme" content="light">
+    <meta property="og:title" content="Etapas del Cristiano">
+    <meta property="og:description" content="Guía espiritual para crecer en la fe, paso a paso.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://feinteligente.github.io/Etapas-para-todo-Cristiano/">
+    <link rel="manifest" href="./manifest.json">
+
     <!-- Metaetiquetas para instalar como App (PWA) -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#fafaf9">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2913/2913465.png">
-    
+
     <!-- Estilos y Fuentes -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:italic,wght@0,400;0,700;1,400&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            boxShadow: {
+              soft: '0 10px 30px rgba(15, 23, 42, 0.08)',
+              card: '0 12px 40px rgba(15, 23, 42, 0.10)'
+            }
+          }
+        }
+      };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <!-- Librerías React -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
+
     <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --bg: #f8fafc;
+            --bg-soft: #f1f5f9;
+            --card: rgba(255,255,255,0.92);
+            --line: #e2e8f0;
+            --text: #0f172a;
+            --muted: #64748b;
+            --brand: #d97706;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            background:
+              radial-gradient(circle at top left, rgba(245, 158, 11, 0.10), transparent 22%),
+              radial-gradient(circle at top right, rgba(148, 163, 184, 0.10), transparent 20%),
+              linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            color: var(--text);
+        }
         .font-serif { font-family: 'Crimson Pro', serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Animaciones suaves */
-        @keyframes slideIn {
-            from { transform: translateX(20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .glass {
+            background: rgba(255,255,255,0.78);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
-        .animate-slide { animation: slideIn 0.3s ease-out forwards; }
-        
+        .content-card p:empty { display: none; }
+        .content-card p + p { margin-top: .15rem; }
+
+        @keyframes slideIn {
+            from { transform: translateY(14px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide { animation: slideIn 0.32s ease-out forwards; }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
+            from { opacity: 0; transform: scale(0.98); }
             to { opacity: 1; transform: scale(1); }
         }
-        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
+        .animate-fade { animation: fadeIn 0.35s ease-out forwards; }
+
+        @media (min-width: 1024px) {
+            body { overflow-y: scroll; }
+        }
     </style>
 </head>
 <body class="bg-[#fafaf9]">
@@ -1460,229 +1509,425 @@
                 biblia: content.tabs[activeTab].biblia
             } : null;
 
+
+            const resetNavigation = () => {
+                setView('main');
+                setLiberView('menu');
+                setArrepentimientoView('menu');
+                setAguasView('menu');
+                setEspirituView('menu');
+                setFuegoView('menu');
+                setServirView('menu');
+                setSelectedItem(null);
+                setShowContentView(false);
+            };
+
+            const openStage = (stageId) => {
+                setView(stageId);
+                setShowContentView(false);
+                setSelectedItem(null);
+                if (stageId === 'liberacion') setLiberView('menu');
+                if (stageId === 'arrepentimiento') setArrepentimientoView('menu');
+                if (stageId === 'aguas') setAguasView('menu');
+                if (stageId === 'espiritu') setEspirituView('menu');
+                if (stageId === 'fuego') setFuegoView('menu');
+                if (stageId === 'servir') setServirView('menu');
+            };
+
+            const openSubItem = (itemId) => {
+                setShowContentView(false);
+                setSelectedItem(null);
+                if (view === 'liberacion') setLiberView(itemId);
+                if (view === 'arrepentimiento') setArrepentimientoView(itemId);
+                if (view === 'aguas') setAguasView(itemId);
+                if (view === 'espiritu') setEspirituView(itemId);
+                if (view === 'fuego') setFuegoView(itemId);
+                if (view === 'servir') setServirView(itemId);
+            };
+
+            const currentMenuItems = view !== 'main' ? (subMenus[view] || []) : [];
+            const currentStage = etapas.find(etapa => etapa.id === view) || null;
+            const currentStageLabel = currentStage ? currentStage.title : 'Guía principal';
+            const pageTitle = showContentView && activeContentData
+                ? `${activeContentData.titulo} · ${activeContentData.sectionLabel}`
+                : selectedItem
+                    ? selectedItem.name
+                    : content
+                        ? content.titulo
+                        : currentStageLabel;
+
             return (
-                <div className="min-h-screen pb-32">
-                    <div className="max-w-md mx-auto p-6">
-                        
-                        {/* HEADER */}
-                        <header className="text-center my-8 animate-fade">
-                            <Icon name="cross" className="w-6 h-6 text-slate-300 mx-auto mb-6" />
-                            <h1 className="text-3xl font-black text-slate-900 leading-tight">
-                                6 ETAPAS QUE <br/>
-                                <span className="text-slate-400 italic font-serif font-normal uppercase text-lg tracking-widest">todo cristiano</span><br/>
-                                DEBE PASAR
-                            </h1>
-                            <div className="h-1 w-12 bg-amber-200 mx-auto mt-6 rounded-full"></div>
-                            
-                            {/* INTRODUCCIÓN - Solo en vista principal */}
-                            {view === 'main' && (
-                            <div className="mt-8 text-left bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
-                                <h2 className="text-xs font-black text-slate-800 uppercase tracking-widest mb-3">Introducción</h2>
-                                <p className="text-sm text-slate-600 leading-relaxed italic font-serif">
-                                    El camino de la fe cristiana es un proceso transformador que nos lleva desde el encuentro inicial con Cristo hasta el servicio pleno en Su reino. Estas seis etapas representan los pasos fundamentales que todo creyente debe experimentar para alcanzar la madurez espiritual y cumplir con el propósito divino en su vida.
-                                </p>
-                                <p className="text-sm text-slate-600 leading-relaxed italic font-serif mt-3">
-                                    Cada etapa tiene su importancia única y prepara al cristiano para la siguiente. Desde la liberación del pecado hasta el servicio activo en la obra de Dios, este recorrido nos moldea, nos fortalece y nos capacita para ser verdaderos discípulos de Cristo.
-                                </p>
-                                <p className="text-sm text-slate-600 leading-relaxed italic font-serif mt-3">
-                                    A continuación, exploraremos cada una de estas etapas esenciales que marcan el desarrollo espiritual del creyente:
-                                </p>
-                            </div>
-                            )}
-                        </header>
-
-                        {/* VISTA PRINCIPAL (GRID) */}
-                        {view === 'main' && (
-                            <div className="grid gap-4 animate-slide">
-                                {etapas.map(e => (
-                                    <button key={e.id} onClick={() => setView(e.id)} className="group bg-white border border-slate-100 p-6 rounded-[2rem] text-left flex items-center gap-5 shadow-sm active:scale-95 transition-all">
-                                        <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-50 group-hover:text-amber-600 transition-colors">
-                                            <Icon name={e.icon} className="w-7 h-7" />
+                <div className="min-h-screen text-slate-900">
+                    <div className="mx-auto max-w-7xl px-4 pb-28 pt-4 sm:px-6 lg:px-8 lg:pb-12">
+                        <div className="grid gap-6 lg:grid-cols-[290px_minmax(0,1fr)]">
+                            <aside className="glass rounded-[2rem] border border-white/70 shadow-soft lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)] lg:overflow-hidden">
+                                <div className="border-b border-slate-200/80 p-6">
+                                    <div className="mb-4 flex items-center gap-3">
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-soft">
+                                            <Icon name="cross" className="h-5 w-5" />
                                         </div>
-                                        <div className="flex-1">
-                                            <h3 className="font-bold text-slate-900 text-sm uppercase tracking-tight">{e.title}</h3>
-                                            <p className="text-slate-400 text-[9px] mt-1 uppercase tracking-widest leading-none">{e.desc}</p>
+                                        <div>
+                                            <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-amber-700">Guía espiritual</p>
+                                            <h1 className="text-xl font-black leading-tight text-slate-950">Etapas del Cristiano</h1>
                                         </div>
-                                        <Icon name="chevron-right" className="w-4 h-4 text-slate-200 group-hover:text-amber-300" />
-                                    </button>
-                                ))}
-                            </div>
-                        )}
+                                    </div>
+                                    <p className="font-serif text-base italic leading-relaxed text-slate-600">
+                                        Un recorrido claro para crecer en la fe, entender cada proceso y conservar el contenido bien organizado.
+                                    </p>
+                                </div>
 
-                        {/* LISTADOS DE SUB-MENÚS */}
-                        {view !== 'main' && activeSubId === 'menu' && (
-                            <div className="animate-slide">
-                                <button onClick={handleBack} className="flex items-center gap-2 text-slate-400 mb-8 font-bold text-[10px] uppercase tracking-widest">
-                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver a Etapas
-                                </button>
-                                <h2 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-6 px-2">
-                                    {view === 'liberacion' && "Módulo 1: liberación"}
-                                    {view === 'arrepentimiento' && "Módulo 2: Arrepentimiento"}
-                                    {view === 'aguas' && "Módulo 3: Bautismo Aguas"}
-                                    {view === 'espiritu' && "Módulo 4: Espíritu Santo"}
-                                    {view === 'fuego' && "Módulo 5: Bautismo Fuego"}
-                                    {view === 'servir' && "Módulo 6: Servir"}
-                                </h2>
-                                <div className="space-y-3">
-                                    {subMenus[view].map(sub => (
-                                        <button key={sub.id} onClick={() => {
-                                            if (view === 'liberacion') setLiberView(sub.id);
-                                            if (view === 'arrepentimiento') setArrepentimientoView(sub.id);
-                                            if (view === 'aguas') setAguasView(sub.id);
-                                            if (view === 'espiritu') setEspirituView(sub.id);
-                                            if (view === 'fuego') setFuegoView(sub.id);
-                                            if (view === 'servir') setServirView(sub.id);
-                                        }} className="w-full bg-white border border-slate-100 p-5 rounded-2xl text-left flex items-center gap-4 hover:bg-slate-50 shadow-sm transition-all active:scale-95">
-                                            <div className="text-slate-300 shrink-0"><Icon name={sub.icon} /></div>
-                                            <div className="flex-1 min-w-0">
-                                                <h4 className="font-bold text-slate-800 text-xs uppercase truncate">{sub.title}</h4>
-                                                <p className="text-[9px] text-slate-400 uppercase tracking-tighter truncate">{sub.desc}</p>
+                                <div className="max-h-[calc(100vh-18rem)] space-y-2 overflow-y-auto p-4 no-scrollbar">
+                                    <button
+                                        onClick={resetNavigation}
+                                        className={`w-full rounded-2xl border px-4 py-3 text-left transition-all ${view === 'main' && !showContentView && !selectedItem ? 'border-slate-900 bg-slate-900 text-white shadow-soft' : 'border-slate-200 bg-white/80 text-slate-700 hover:border-slate-300 hover:bg-white'}`}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${view === 'main' && !showContentView && !selectedItem ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-700'}`}>
+                                                <Icon name="home" className="h-5 w-5" />
                                             </div>
-                                            <Icon name="chevron-right" className="w-3 h-3 text-slate-200" />
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
+                                            <div>
+                                                <p className="text-sm font-bold">Inicio</p>
+                                                <p className={`text-xs ${view === 'main' && !showContentView && !selectedItem ? 'text-slate-200' : 'text-slate-500'}`}>Resumen general</p>
+                                            </div>
+                                        </div>
+                                    </button>
 
-                        {/* CONTENIDO DETALLADO - NUEVA PANTALLA AL HACER CLIC */}
-                        {content && activeSubId && activeSubId !== 'menu' && !selectedItem && !showContentView && (
-                            <div className="animate-slide">
-                                <button onClick={handleBack} className="flex items-center gap-2 text-slate-400 mb-6 font-bold text-[10px] uppercase tracking-widest">
-                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver
-                                </button>
-                                
-                                {/* Título del contenido */}
-                                <div className={`p-6 text-white rounded-t-2xl ${content.accent}`}>
-                                    <h2 className="text-xl font-serif italic leading-tight">{content.titulo}</h2>
+                                    {etapas.map((e) => {
+                                        const isActiveStage = view === e.id;
+                                        return (
+                                            <div key={e.id} className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white/80">
+                                                <button
+                                                    onClick={() => openStage(e.id)}
+                                                    className={`w-full px-4 py-4 text-left transition-all ${isActiveStage ? 'bg-slate-950 text-white' : 'hover:bg-slate-50'}`}
+                                                >
+                                                    <div className="flex items-start gap-3">
+                                                        <div className={`mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${isActiveStage ? 'bg-white/10 text-white' : 'bg-slate-100 text-slate-700'}`}>
+                                                            <Icon name={e.icon} className="h-5 w-5" />
+                                                        </div>
+                                                        <div className="min-w-0">
+                                                            <p className="text-sm font-extrabold leading-tight">{e.title}</p>
+                                                            <p className={`mt-1 text-xs leading-relaxed ${isActiveStage ? 'text-slate-200' : 'text-slate-500'}`}>{e.desc}</p>
+                                                        </div>
+                                                    </div>
+                                                </button>
+
+                                                {isActiveStage && currentMenuItems.length > 0 && (
+                                                    <div className="border-t border-white/10 bg-white p-2">
+                                                        <div className="mb-2 px-2 pt-1 text-[10px] font-black uppercase tracking-[0.24em] text-slate-400">
+                                                            Temas y subtemas
+                                                        </div>
+                                                        <div className="space-y-1">
+                                                            {currentMenuItems.map((item) => {
+                                                                const isCurrent = activeSubId === item.id && !showContentView && !selectedItem;
+                                                                return (
+                                                                    <button
+                                                                        key={item.id}
+                                                                        onClick={() => openSubItem(item.id)}
+                                                                        className={`w-full rounded-xl px-3 py-3 text-left transition-all ${isCurrent ? 'bg-amber-50 text-amber-900 ring-1 ring-amber-200' : 'text-slate-700 hover:bg-slate-50'}`}
+                                                                    >
+                                                                        <div className="flex items-start gap-3">
+                                                                            <div className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${isCurrent ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-slate-600'}`}>
+                                                                                <Icon name={item.icon || 'book-open'} className="h-4 w-4" />
+                                                                            </div>
+                                                                            <div className="min-w-0">
+                                                                                <p className="text-xs font-bold uppercase tracking-wide">{item.title}</p>
+                                                                                {item.desc && <p className="mt-1 text-xs leading-relaxed text-slate-500">{item.desc}</p>}
+                                                                            </div>
+                                                                        </div>
+                                                                    </button>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
                                 </div>
-                                
-                                {/* Si tiene subMenus (como sintomas), mostrarlos - SI NO, mostrar tabs */}
-                                {content.subMenus ? (
-                                    <div className="bg-white rounded-b-2xl shadow-xl border border-slate-100 overflow-hidden mb-6">
-                                        {content.subMenus.map((sub) => (
-                                            <button 
-                                                key={sub.id}
-                                                onClick={() => {
-                                                    setShowContentView(false);
-                                                    setActiveTab(null);
-                                                    if (view === 'liberacion') setLiberView(sub.id);
-                                                    if (view === 'arrepentimiento') setArrepentimientoView(sub.id);
-                                                    if (view === 'aguas') setAguasView(sub.id);
-                                                    if (view === 'espiritu') setEspirituView(sub.id);
-                                                    if (view === 'fuego') setFuegoView(sub.id);
-                                                    if (view === 'servir') setServirView(sub.id);
-                                                }}
-                                                className="w-full p-5 flex items-center justify-between border-b border-slate-50 last:border-b-0 hover:bg-slate-50 transition-all"
+
+                                <div className="border-t border-slate-200/80 p-4">
+                                    <a
+                                        href={WHATSAPP_LINK}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-4 py-3 text-sm font-bold text-white shadow-soft transition hover:bg-emerald-700"
+                                    >
+                                        <Icon name="message-circle" className="h-4 w-4" />
+                                        Acompañamiento por WhatsApp
+                                    </a>
+                                </div>
+                            </aside>
+
+                            <main className="space-y-6">
+                                <section className="glass animate-fade rounded-[2rem] border border-white/70 px-5 py-6 shadow-soft sm:px-8 sm:py-8">
+                                    <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                                        <div className="max-w-3xl">
+                                            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.24em] text-amber-800">
+                                                <Icon name="book-heart" className="h-4 w-4" />
+                                                Formación cristiana
+                                            </div>
+                                            <h2 className="text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
+                                                {pageTitle}
+                                            </h2>
+                                            <p className="mt-4 max-w-2xl font-serif text-lg italic leading-relaxed text-slate-600">
+                                                {view === 'main'
+                                                    ? 'Cada etapa tiene su importancia. Este material organiza el crecimiento espiritual desde la liberación hasta el servicio, con una lectura más clara tanto en celular como en computadora.'
+                                                    : showContentView && activeContentData
+                                                        ? 'Estás viendo una sección puntual del contenido. Podés volver al tema anterior cuando quieras y seguir avanzando paso a paso.'
+                                                        : selectedItem
+                                                            ? 'Detalle de una señal específica para revisar con más claridad su análisis espiritual.'
+                                                            : 'Entrá a cada tema, navegá sus subtemas y mantené el contenido ordenado sin perder profundidad.'}
+                                            </p>
+                                        </div>
+
+                                        <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+                                            {(view !== 'main' || showContentView || selectedItem) && (
+                                                <button
+                                                    onClick={handleBack}
+                                                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                                                >
+                                                    <Icon name="arrow-left" className="h-4 w-4" />
+                                                    Volver
+                                                </button>
+                                            )}
+                                            <button
+                                                onClick={resetNavigation}
+                                                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                                             >
-                                                <span className="font-bold text-xs uppercase tracking-wide text-slate-700">
-                                                    {sub.title}
-                                                </span>
-                                                <Icon name="chevron-right" className="w-4 h-4 text-slate-300" />
+                                                <Icon name="layout-grid" className="h-4 w-4" />
+                                                Ver etapas
                                             </button>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    /* Lista de tabs normal */
-                                    <div className="bg-white rounded-b-2xl shadow-xl border border-slate-100 overflow-hidden mb-6">
-                                        {Object.keys(content.tabs).map((key, index) => (
-                                            <button 
-                                                key={key}
-                                                onClick={() => {
-                                                    // Guardar la pestaña activa y navegar a vista de contenido
-                                                    setActiveTab(key);
-                                                    setShowContentView(true);
-                                                }}
-                                                className="w-full p-5 flex items-center justify-between border-b border-slate-50 last:border-b-0 hover:bg-slate-50 transition-all"
+                                            <a
+                                                href={WHATSAPP_LINK}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-bold text-white transition hover:bg-slate-800"
                                             >
-                                                <span className="font-bold text-xs uppercase tracking-wide text-slate-700">
-                                                    {content.tabs[key].label}
-                                                </span>
-                                                <Icon name="chevron-right" className="w-4 h-4 text-slate-300" />
-                                            </button>
-                                        ))}
+                                                <Icon name="message-square-share" className="h-4 w-4" />
+                                                Pedir ayuda
+                                            </a>
+                                        </div>
                                     </div>
-                                )}
-                            </div>
-                        )}
-                        
-                        {/* VISTA DE CONTENIDO INDIVIDUAL - NUEVA PANTALLA */}
-                        {showContentView && activeContentData && (
-                            <div className="animate-slide">
-                                <button onClick={() => setShowContentView(false)} className="flex items-center gap-2 text-slate-400 mb-6 font-bold text-[10px] uppercase tracking-widest">
-                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver a Temas
-                                </button>
-                                
-                                <div className="bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-50 overflow-hidden">
-                                    <div className={`p-6 text-white ${activeContentData.accent}`}>
-                                        <h2 className="text-xl font-serif italic leading-tight">{activeContentData.titulo}</h2>
-                                        <p className="text-xs text-white/70 mt-2 uppercase tracking-wider">{activeContentData.sectionLabel}</p>
-                                    </div>
-                                    <div className="p-6">
-                                        <div className="space-y-4">
-                                            {activeContentData.items.map((item, i) => (
-                                                <div key={i} className="flex gap-3 items-start">
-                                                    <Icon name="check-circle-2" className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-                                                    <p className="text-slate-600 text-sm leading-relaxed font-serif">{item}</p>
+                                </section>
+
+                                {view === 'main' && (
+                                    <>
+                                        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 animate-slide">
+                                            {etapas.map((e) => (
+                                                <button
+                                                    key={e.id}
+                                                    onClick={() => openStage(e.id)}
+                                                    className="group rounded-[2rem] border border-white/70 bg-white/90 p-6 text-left shadow-soft transition duration-200 hover:-translate-y-1 hover:shadow-card"
+                                                >
+                                                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-700 transition group-hover:bg-amber-50 group-hover:text-amber-700">
+                                                        <Icon name={e.icon} className="h-6 w-6" />
+                                                    </div>
+                                                    <h3 className="text-lg font-black leading-tight text-slate-900">{e.title}</h3>
+                                                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{e.desc}</p>
+                                                    <div className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-slate-400 group-hover:text-amber-700">
+                                                        Explorar
+                                                        <Icon name="arrow-right" className="h-4 w-4" />
+                                                    </div>
+                                                </button>
+                                            ))}
+                                        </section>
+
+                                        <section className="grid gap-4 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)]">
+                                            <article className="rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-soft sm:p-8">
+                                                <p className="mb-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-slate-400">Introducción</p>
+                                                <div className="space-y-4 font-serif text-lg italic leading-relaxed text-slate-600">
+                                                    <p>El camino de la fe cristiana es un proceso transformador que nos lleva desde el encuentro inicial con Cristo hasta el servicio pleno en Su reino.</p>
+                                                    <p>Estas seis etapas representan los pasos fundamentales que todo creyente debe experimentar para alcanzar la madurez espiritual y cumplir con el propósito divino en su vida.</p>
+                                                    <p>Cada etapa prepara al cristiano para la siguiente. Desde la liberación del pecado hasta el servicio activo en la obra de Dios, este recorrido moldea, fortalece y capacita para ser un verdadero discípulo de Cristo.</p>
                                                 </div>
+                                            </article>
+
+                                            <article className="rounded-[2rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-soft sm:p-8">
+                                                <p className="mb-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-slate-400">Cómo usar esta página</p>
+                                                <div className="space-y-4 text-sm leading-relaxed text-slate-200">
+                                                    <p>1. Elegí una de las 6 etapas y entrá al tema principal.</p>
+                                                    <p>2. Abrí los submenús para navegar mejor el contenido.</p>
+                                                    <p>3. Leé cada bloque por partes para conservar el orden.</p>
+                                                    <p>4. En celular y en PC ahora vas a ver una estructura más clara, con mejor lectura y navegación.</p>
+                                                </div>
+                                            </article>
+                                        </section>
+                                    </>
+                                )}
+
+                                {view !== 'main' && !content && !selectedItem && (
+                                    <section className="rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-soft sm:p-8 animate-slide">
+                                        <div className="mb-6">
+                                            <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-slate-400">{currentStageLabel}</p>
+                                            <h3 className="mt-2 text-2xl font-black text-slate-950">Elegí un tema para continuar</h3>
+                                            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">
+                                                En esta etapa tenés un menú organizado por subtemas. Podés abrir cualquiera desde la barra lateral o desde las tarjetas de abajo.
+                                            </p>
+                                        </div>
+
+                                        <div className="grid gap-3 md:grid-cols-2">
+                                            {currentMenuItems.map((item) => (
+                                                <button
+                                                    key={item.id}
+                                                    onClick={() => openSubItem(item.id)}
+                                                    className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 text-left transition hover:border-slate-300 hover:bg-white"
+                                                >
+                                                    <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-white text-slate-700 shadow-sm">
+                                                        <Icon name={item.icon || 'book-open'} className="h-5 w-5" />
+                                                    </div>
+                                                    <h4 className="text-sm font-extrabold uppercase tracking-wide text-slate-800">{item.title}</h4>
+                                                    {item.desc && <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.desc}</p>}
+                                                </button>
                                             ))}
                                         </div>
-                                        {activeContentData.biblia && (
-                                            <div className="mt-8 p-5 bg-slate-50 rounded-2xl text-center border border-slate-100">
-                                                <p className="italic text-slate-500 text-xs">{activeContentData.biblia}</p>
+                                    </section>
+                                )}
+
+                                {content && !showContentView && !selectedItem && (
+                                    <section className="animate-slide rounded-[2rem] border border-white/70 bg-white/90 shadow-card overflow-hidden">
+                                        <div className={`${content.accent} px-6 py-6 text-white sm:px-8`}>
+                                            <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-white/70">{currentStageLabel}</p>
+                                            <h3 className="mt-2 text-2xl font-black sm:text-3xl">{content.titulo}</h3>
+                                        </div>
+
+                                        <div className="p-5 sm:p-8">
+                                            {content.subMenus ? (
+                                                <div className="grid gap-3 md:grid-cols-2">
+                                                    {content.subMenus.map((sub) => (
+                                                        <button
+                                                            key={sub.id}
+                                                            onClick={() => openSubItem(sub.id)}
+                                                            className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 text-left transition hover:border-slate-300 hover:bg-white"
+                                                        >
+                                                            <div className="mb-3 flex items-center justify-between gap-3">
+                                                                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-slate-700 shadow-sm">
+                                                                    <Icon name="folder-open" className="h-5 w-5" />
+                                                                </div>
+                                                                <Icon name="arrow-right" className="h-4 w-4 text-slate-400" />
+                                                            </div>
+                                                            <p className="text-sm font-extrabold uppercase tracking-wide text-slate-800">{sub.title}</p>
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <div className="grid gap-3 md:grid-cols-2">
+                                                    {Object.keys(content.tabs).map((key) => (
+                                                        <button
+                                                            key={key}
+                                                            onClick={() => {
+                                                                setActiveTab(key);
+                                                                setShowContentView(true);
+                                                                window.scrollTo(0, 0);
+                                                            }}
+                                                            className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 text-left transition hover:border-slate-300 hover:bg-white"
+                                                        >
+                                                            <div className="mb-3 flex items-center justify-between gap-3">
+                                                                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-slate-700 shadow-sm">
+                                                                    <Icon name="book-open-text" className="h-5 w-5" />
+                                                                </div>
+                                                                <Icon name="arrow-right" className="h-4 w-4 text-slate-400" />
+                                                            </div>
+                                                            <p className="text-sm font-extrabold uppercase tracking-wide text-slate-800">{content.tabs[key].label}</p>
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </section>
+                                )}
+
+                                {showContentView && activeContentData && (
+                                    <section className="animate-slide overflow-hidden rounded-[2rem] border border-white/70 bg-white/95 shadow-card">
+                                        <div className={`${activeContentData.accent} px-6 py-6 text-white sm:px-8`}>
+                                            <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-white/70">{activeContentData.sectionLabel}</p>
+                                            <h3 className="mt-2 text-2xl font-black sm:text-3xl">{activeContentData.titulo}</h3>
+                                            {activeContentData.biblia && <p className="mt-3 text-sm text-white/80">{activeContentData.biblia}</p>}
+                                        </div>
+                                        <div className="content-card p-5 sm:p-8">
+                                            <div className="space-y-3">
+                                                {activeContentData.items.map((item, i) => (
+                                                    item === "" ? <div key={i} className="h-3"></div> : (
+                                                        <div key={i} className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-slate-50/60 px-4 py-4">
+                                                            <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+                                                                <Icon name="check-circle-2" className="h-4 w-4" />
+                                                            </div>
+                                                            <p className="font-serif text-lg leading-relaxed text-slate-700">{item}</p>
+                                                        </div>
+                                                    )
+                                                ))}
                                             </div>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                                        </div>
+                                    </section>
+                                )}
 
-                        {/* DETALLE DE SEÑAL INDIVIDUAL */}
-                        {selectedItem && (
-                            <div className="animate-slide text-center">
-                                <button onClick={() => setSelectedItem(null)} className="flex items-center gap-2 text-slate-400 mb-8 font-bold text-[10px] uppercase tracking-widest mx-auto">
-                                    <Icon name="arrow-left" className="w-4 h-4" /> Volver a Señales
-                                </button>
-                                <div className="bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-50 overflow-hidden">
-                                    <div className="text-amber-500 mb-6 flex justify-center"><Icon name={selectedItem.icon} className="w-12 h-12" /></div>
-                                    <h3 className="text-2xl font-serif italic mb-10 text-slate-900">{selectedItem.name}</h3>
-                                    <div className="text-left space-y-4 mb-10 border-l-2 border-amber-100 pl-6">
-                                        <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest block mb-2">Análisis Espiritual</span>
-                                        {selectedItem.raices.map((r, i) => <p key={i} className="text-slate-600 text-sm italic leading-relaxed">• {r}</p>)}
-                                    </div>
-                                    <div className="bg-slate-50 p-6 rounded-3xl italic text-slate-400 text-xs border border-slate-100">"{selectedItem.versiculo}"</div>
-                                </div>
-                            </div>
-                        )}
-
+                                {selectedItem && (
+                                    <section className="animate-slide overflow-hidden rounded-[2rem] border border-white/70 bg-white/95 shadow-card">
+                                        <div className="bg-slate-950 px-6 py-6 text-white sm:px-8">
+                                            <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-slate-400">Señal analizada</p>
+                                            <div className="mt-3 flex items-center gap-4">
+                                                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-amber-300">
+                                                    <Icon name={selectedItem.icon} className="h-8 w-8" />
+                                                </div>
+                                                <h3 className="text-2xl font-black sm:text-3xl">{selectedItem.name}</h3>
+                                            </div>
+                                        </div>
+                                        <div className="p-5 sm:p-8">
+                                            <div className="rounded-[1.5rem] border border-amber-100 bg-amber-50/70 p-5">
+                                                <p className="mb-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-amber-800">Análisis espiritual</p>
+                                                <div className="space-y-3">
+                                                    {selectedItem.raices.map((r, i) => (
+                                                        <p key={i} className="font-serif text-lg leading-relaxed text-slate-700">• {r}</p>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-center">
+                                                <p className="text-sm italic text-slate-500">{selectedItem.versiculo}</p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                )}
+                            </main>
+                        </div>
                     </div>
 
-                    {/* FOOTER DE NAVEGACIÓN */}
-                    <footer className="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-slate-100 p-6 flex justify-around items-center z-50">
-                        <button onClick={() => {
-                            setView('main'); 
-                            setLiberView('menu'); setArrepentimientoView('menu'); setAguasView('menu'); setEspirituView('menu'); setFuegoView('menu'); setServirView('menu');
-                            setSelectedItem(null);
-                        }} className={`flex flex-col items-center gap-1.5 transition-all ${view === 'main' ? 'text-slate-900 scale-110' : 'text-slate-300'}`}>
-                            <Icon name="shield" />
-                            <span className="text-[8px] font-black uppercase tracking-widest">Etapas</span>
-                        </button>
-                        
-                        <button onClick={() => {
-                            setView('liberacion'); setLiberView('menu'); setSelectedItem(null);
-                        }} className={`flex flex-col items-center gap-1.5 transition-all ${view === 'liberacion' ? 'text-slate-900 scale-110' : 'text-slate-300'}`}>
-                            <Icon name="zap" />
-                            <span className="text-[8px] font-black uppercase tracking-widest">Guerra</span>
-                        </button>
-                        
-                        <a href={WHATSAPP_LINK} target="_blank" className="flex flex-col items-center gap-1.5 text-slate-300 hover:text-emerald-500 transition-all">
-                            <Icon name="message-circle" />
-                            <span className="text-[8px] font-black uppercase tracking-widest">Ayuda</span>
-                        </a>
+                    <footer className="glass fixed inset-x-0 bottom-0 z-50 border-t border-white/80 px-4 py-3 shadow-soft lg:hidden">
+                        <div className="mx-auto flex max-w-md items-center justify-between gap-2">
+                            <button
+                                onClick={resetNavigation}
+                                className={`flex min-w-0 flex-1 flex-col items-center gap-1 rounded-2xl px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] transition ${view === 'main' && !showContentView && !selectedItem ? 'bg-slate-950 text-white' : 'text-slate-500'}`}
+                            >
+                                <Icon name="layout-grid" className="h-5 w-5" />
+                                Etapas
+                            </button>
+
+                            <button
+                                onClick={() => openStage('liberacion')}
+                                className={`flex min-w-0 flex-1 flex-col items-center gap-1 rounded-2xl px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] transition ${view === 'liberacion' ? 'bg-slate-950 text-white' : 'text-slate-500'}`}
+                            >
+                                <Icon name="shield" className="h-5 w-5" />
+                                Guerra
+                            </button>
+
+                            <a
+                                href={WHATSAPP_LINK}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="flex min-w-0 flex-1 flex-col items-center gap-1 rounded-2xl px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700"
+                            >
+                                <Icon name="message-circle" className="h-5 w-5" />
+                                Ayuda
+                            </a>
+                        </div>
                     </footer>
                 </div>
             );
         };
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
+            });
+        }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
